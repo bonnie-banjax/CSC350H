@@ -1,0 +1,57 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Assignment_01_v2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DBA4E859-34AD-4884-92A0-68E0267AEB0C}|Assignment_01_v2.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\assignment_01_v2\\asn_01_v2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBA4E859-34AD-4884-92A0-68E0267AEB0C}|Assignment_01_v2.csproj|solutionrelative:asn_01_v2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DBA4E859-34AD-4884-92A0-68E0267AEB0C}|Assignment_01_v2.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\assignment_01_v2\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBA4E859-34AD-4884-92A0-68E0267AEB0C}|Assignment_01_v2.csproj|solutionrelative:player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Player.cs",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Assignment_01_v2\\Player.cs",
+              "RelativeDocumentMoniker": "Player.cs",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Assignment_01_v2\\Player.cs",
+              "RelativeToolTip": "Player.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAHgAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-13T20:11:34.396Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ASN_01_v2.cs",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Assignment_01_v2\\ASN_01_v2.cs",
+              "RelativeDocumentMoniker": "ASN_01_v2.cs",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Assignment_01_v2\\ASN_01_v2.cs",
+              "RelativeToolTip": "ASN_01_v2.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-13T20:11:34.448Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

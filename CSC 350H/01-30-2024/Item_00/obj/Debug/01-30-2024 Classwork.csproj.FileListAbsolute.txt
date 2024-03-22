@@ -1,0 +1,7 @@
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\ConsoleApp1\bin\Debug\ConsoleApp1.exe.config
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\ConsoleApp1\bin\Debug\ConsoleApp1.exe
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\ConsoleApp1\bin\Debug\ConsoleApp1.pdb
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\ConsoleApp1\obj\Debug\01-30-2024 Classwork.csproj.AssemblyReference.cache
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\ConsoleApp1\obj\Debug\01-30-2024 Classwork.csproj.CoreCompileInputs.cache
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\ConsoleApp1\obj\Debug\ConsoleApp1.exe
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\ConsoleApp1\obj\Debug\ConsoleApp1.pdb

@@ -1,0 +1,987 @@
+﻿MASSGRAVE_00
+CODE & COMMENT DUMPING GROUND
+
+-----------------------------------------------------------|-----------------------------------------------------------
+
+[03-07-2024][000]
+
+--> [WHAT I AM]
+-> Code here was commented out and placed somewhere to ostentiably be available if decided was required again
+-> this file is used as a mass consolidation ground to insure if truly required, the code could be retrieved
+through manual processing, but otherwise allows it to be "soft-cleaned" from the rest of the codebase
+--> Format & Style Guides
+-> Code sections should be put in dated (moving forward) encapsulation blocks, where the blocks are whatever
+code that has an existing relationship to itself is delineated by the top bar sections, indicating unit,
+with the dating providing a loose time key for (very rough) indexing
+-> date should be provided in the [DD-MM-YYYY] format ( - not / for serpations) with leading zeros where needed
+-> moving forward, may optionally use additional trailing [xxxx] to indicate order of dumping from that date,
+ie items gain a dump index sequentially, merely based on the order in which they are dumped
+-> this dump file might be used as a model for automated logging system moving forward (stretch goal)
+-> line length should be limited to the length of the top bar (reference bar), which are the unit delineators
+-> the inital dumping will be more chaotic than otherwise expected, and likely date to one date code
+-> may include name of source file from which dumped (name at time) but not as part of the index code
+
+
+--> [MAY OR MAY NOT BE RELEVENT]
+-> strings that look like a pair of brackets with (symmetrical?) non-alphanumeric characters between them
+(any symbol thats not a number or a letter) is likely a log refernce symbol, which are extra rough in terms
+of development cycle and subject to unstructured variance until a symbol creation system is developed
+-> examples: "[::]" , "[::{::}::]" , "[=]" , "[?]", "[--|--]"
+
+-----------------------------------------------------------|-----------------------------------------------------------
+
+[03-07-2024][001]
+(from CORE)
+
+    Console.WriteLine(theHouse.Audit.getLog(1).action);
+
+    State proto = new();
+
+    LinkedList<Object> filo_01 = new();
+    LinkedList<Object> filo_02 = new();
+
+    for (int i = 0; i < 10; i++)
+    {
+        filo_01.AddLast(i);
+        filo_02.AddLast(i);
+    }
+
+    proto.addField(filo_01);
+    proto.addField(filo_02);
+
+    Console.WriteLine(proto.Signature());
+    Console.WriteLine(proto.Dump());
+
+    proto.Dorm();
+
+    for (int i = 0; i < 10; i++)
+    {
+        proto.addField(filo_01);
+        proto.addField(filo_02);
+        proto.Dorm();
+        //proto.Dust();
+    }
+
+
+    Console.WriteLine(proto.Signature());
+    Console.WriteLine(proto.Dump());
+
+-----------------------------------------------------------|-----------------------------------------------------------
+
+[03-07-2024][002]
+(From Validator)
+
+    // difference between abstract & static (?)
+    // arguement for instancing in that it would allow (specific circumstance)
+    // but already does that with dependancy injection (?)
+
+    // this class was created to test whether could use swtich statements to
+    // super-optimize the process but really the validation is so simple
+    // that the validate set function should be a method of the ruleset
+
+    // maybe change from static to (well, a singleton ?)
+    // lazy initalization (make a static variable so works like
+    // mCopy of Heque where the first caller constructs & then everyone
+    // else that should have these functions (and would call to make one)
+    // gets a reference to where the existing instance lives
+
+    // [03-07-2024] copied the code into a new Struct without
+    // all the documentation in order to keep things tidy
+    // just feels right having it be a struct since its really
+    // just a collection of methods, and having be a struct
+    // encourages composition over inheritence
+    // no real overhead since it doesn't have any data of
+    // its own so double check how that interacts with
+    // (static tag, in regards to methods and structs
+
+    // structs are also potentially more condusive to the command
+    // design pattern in that classes are (not sure how to describe)
+    // simultaniously more and less generalized; the gist is that
+    // everything the validator does is just a (static) function
+    // and while their (are only a few dependencies), between the 
+    // methods, they are overall pretty decoupled, and are entirely
+    // decopupled from the data that they process, but still make sense
+    // to group together in some regard, which a struct does perfectly
+
+    public class Validator //may return to static class
+    {
+        // -----------------------------------------------------------|-----------------------------------------------------------
+
+        // this is the abstracted version of initial validator; by using
+        // and array for the values, the same function can be used for
+        // for pairs (array size of 2, check == 11) & the triad
+        // (array size of 3, checkCon = 36)
+
+        static public bool validate_set(int[] vals, int check) // validate_sum (?)
+        {
+            int sum = 0;
+            foreach (int val in vals)
+                sum += val;
+
+            if (sum == check)
+                return true;
+            else
+                return false;
+        } // END_FUNC
+
+        // this set validator checks to see if any pair meets the criteria
+        // and exits its nested loops as soon as flag is set true
+
+        // -----------------------------------------------------------|-----------------------------------------------------------
+        // rename find_index_pair
+        static public int[] find_pair_index(int[] valArray, int checkCon)
+        {
+            if (valArray == null)
+                return [-1, -1];
+
+            for (int i = 0; (i < valArray.Length); i++)
+                for (int ii = 0; (ii < valArray.Length); ii++)
+                    if ( (valArray[i] + valArray[ii] == checkCon) && (valArray[i] != valArray[ii]) )
+                        return [i, ii];
+            return [-1, -1]; // really want to only return [-1]
+        }
+
+        // rename find_index_triad (could do three binary search calls (?))
+        static public int[] find_triad_index(int[] valArray, (int a, int b, int c) faces) // 11, 12, 13
+        {
+
+            if (valArray == null)
+                return [-1, -1, -1];
+
+            bool[] checks = [false, false, false];
+            int[] nDexes = [-1, -1, -1];
+            for (int i = 0; i < (valArray.Length); i++)
+            {
+                if (valArray[i] == faces.a)
+                {
+                    nDexes[0] = i;
+                    checks[0] = true;
+                }
+                if (valArray[i] == faces.b)
+                {
+                    nDexes[1] = i;
+                    checks[1] = true;
+                }
+                if (valArray[i] == faces.c)
+                {
+                    nDexes[2] = i;
+                    checks[2] = true;
+                }
+            } // END_FOR
+
+            if (checks[0] == true
+            && checks[1] == true
+            && checks[2] == true)
+                return nDexes;
+            else { return [-1, -1, -1];  }
+
+        }
+
+
+        // this doesn't properly return a releveant index
+        static public int[] find_index_triad(int[] valArray, int[] faceArray) // 11, 12, 13
+        {
+            List<int> nDexes = valArray.ToList();
+            
+            foreach (var value in faceArray) {
+                nDexes.Add(SearAlgo(valArray, value));
+                if (nDexes.Last() == (-1))
+                    return [-1, -1, -1]; // was int[] noTriad = [-1, -1, -1];
+            } // END_FOR
+
+            return nDexes.ToArray();
+        }
+
+        // orginally wanted to use binary search, but forgot that needs a sorted list
+        // there's for sure a way to implement this to work as such, since 3*binarySearch is
+        // kless expensive than a linear search in many cases, but for now just doing linear search
+        static int SearAlgo(int[] arg, int look) // no reason to be public 
+        {
+            for (int i = 0; i < arg.Length; i++)
+                if (arg[i] == look)
+                    return arg[i];
+            
+            return -1;
+        }
+
+        // not sure why took things had broken into seperate functions and brought back all toghether
+        // including the fact that it not long skips the triad check if it finds a pair condition, which
+        // was part of what make the method more sophisticated, but need to clear up old tangled methods
+        // and this one insures there is a single, function method for checking, given a valarray, if 
+        // any pair or triad moves exists (so more in functional programming side) (input & output solid)
+        public static bool valid_move_exists(int[] valArray, int checkCon, (int a, int b, int c) faces) // validate_sum (?)
+        {
+            //-----
+            bool flag_00; ;
+            bool flag_01 = false;
+            bool flag_02 = false;
+
+            //-----
+            // seperate back out into own function or use find_pair_index
+            // uses flag_01
+            for (int i = 0; i < (valArray.Length) && (flag_01 == false); i++)
+                for (int ii = 0; (ii < valArray.Length) && (flag_01 == false); ii++)
+                    if ((valArray[i] + valArray[ii] == checkCon) && (valArray[i] != valArray[ii]))
+                    { flag_01 = true; }
+                    
+            //-----
+            // seperate back out into own function or use refactor find_triad_index
+            // uses flag_02
+            bool[] checks = [false, false, false];
+            for (int i = 0; i < (valArray.Length); i++)
+            {
+                if (valArray[i] == faces.a)
+                    checks[0] = true;
+                if (valArray[i] == faces.b)
+                    checks[1] = true;
+                if (valArray[i] == faces.c)
+                    checks[2] = true;
+            } // END_FOR
+
+            if (checks[0] == true
+             && checks[1] == true
+             && checks[2] == true)
+                flag_02 = true;
+
+            //-----
+
+            if (flag_01 == true || flag_02 == true)
+            { flag_00 = true; }
+            else
+            { flag_00 = false; }
+
+            return flag_00;
+        } // END_FUNC
+
+        //-----------------------------------------------------------|-----------------------------------------------------------
+
+-----------------------------------------------------------|-----------------------------------------------------------
+
+[03-07-2024][003]
+(from HOUSE)
+
+/*
+ * 
+public (int, int) defunct_01(int[] valArray, int checkCon)
+{
+    bool flag = false;
+    for (int i = 0; i < (valArray.Length) && (flag == false); i++)
+        for (int ii = 0; (ii < valArray.Length) && (flag == false); ii++)
+            if (valArray[i] + valArray[ii] == checkCon)
+                return (i, ii);
+    return (-1, -1);
+}
+
+
+
+        public bool validate_set_02(int[] valArray, int checkCon) // validate_sum (?)
+        {
+            bool flag = false;
+            (int, int)nDexes;
+            for (int i = 0; i < (valArray.Length) && (flag == false); i++)
+                for (int ii = 0; (ii < valArray.Length) && (flag == false); ii++)
+                    if (valArray[i] + valArray[ii] == checkCon)
+                    {
+                        flag = true;
+                        nDexes = (i, ii);
+                    }
+
+            if (flag == false)
+                flag = triadCheck_01(valArray, (11, 12, 13) );
+
+            return flag;
+        } // END_FUNC
+
+        public bool triadCheck_01(int[] valArray, (int a, int b, int c)faces) // 11, 12, 13
+        {
+            bool flag = false;
+            bool[] checks = [false, false, false];
+            for (int i = 0; i < (valArray.Length); i++) {
+                if (valArray[i] == faces.a)
+                    checks[0] = true;
+                if (valArray[i] == faces.b)
+                    checks[1] = true;
+                if (valArray[i] == faces.c)
+                    checks[2] = true;
+            } // END_FOR
+
+            if (checks[0] == true 
+             && checks[0] == true 
+             && checks[0] == true)
+                flag = true;
+
+            return flag;
+        }
+
+
+        // not sure why took things had broken into seperate functions and brought back all toghether
+        // including the fact that it not long skips the triad check if it finds a pair condition, which
+        // was part of what make the method more sophisticated, but need to clear up old tangled methods
+        // and this one insures there is a single, function method for checking, given a valarray, if 
+        // any pair or triad moves exists (so more in functional programming side) (input & output solid)
+        public bool valid_move_exists(int[] valArray, (int a, int b, int c) faces, int checkCon) // validate_sum (?)
+        {
+            //-----
+            bool flag_00 = false;
+            bool flag_01 = false;
+            bool flag_02 = false;
+
+            //-----
+            // seperate back out into own function or use find_pair_index
+            // uses flag_01
+            (int, int) nDexes;
+            for (int i = 0; i < (valArray.Length) && (flag_01 == false); i++)
+                for (int ii = 0; (ii < valArray.Length) && (flag_01 == false); ii++)
+                    if (valArray[i] + valArray[ii] == checkCon)
+                    {
+                        flag_01 = true;
+                        nDexes = (i, ii);
+                    }
+
+            //-----
+            // seperate back out into own function or use refactor find_triad_index
+            // uses flag_02
+            bool[] checks = [false, false, false];
+            for (int i = 0; i < (valArray.Length); i++)
+            {
+                if (valArray[i] == faces.a)
+                    checks[0] = true;
+                if (valArray[i] == faces.b)
+                    checks[1] = true;
+                if (valArray[i] == faces.c)
+                    checks[2] = true;
+            } // END_FOR
+
+            if (checks[0] == true
+             && checks[0] == true
+             && checks[0] == true)
+                flag_02 = true;
+
+            //-----
+
+            if (flag_01 == true || flag_02 == true)
+            { flag_00 = true; }
+            else
+            { flag_00 = false; }
+
+            return flag_00;
+        } // END_FUNC
+
+
+ */
+
+-----------------------------------------------------------|-----------------------------------------------------------
+
+[03-07-2024][004]
+(From STRUCTS, STATE)
+
+
+    // [GIANT COMMENTARY BLOCK] moved to its own documentation since living
+
+
+
+    public struct State
+    {
+
+
+        public LinkedList<Object> active_state; // this list is the (multi-length set of "fields" for the state)
+
+        private Stack
+        <LinkedList<Object>>
+            dormant_states;  
+
+        
+        public void addField(object arg)
+        { active_state.AddLast(arg); }
+
+        public object[] Status() 
+        { return dormant_states.Peek().ToArray(); } // CheckState // had get but makes word not yellow :(
+
+        public LinkedList<object> Check()
+        { return dormant_states.Peek(); }
+
+
+        public State() { active_state = new(); dormant_states = new(); }
+        public State(LinkedList<object>? seed)
+        {
+            dormant_states = new();
+            if (seed != null) { 
+                active_state = seed;
+                dormant_states.Push(active_state);
+            }
+            else { active_state = new(); }
+        } // END_CONSTRUCTOR
+
+
+        public void Dorm() { dormant_states.Push(active_state); }
+        public void Wake() { active_state = dormant_states.Pop(); }
+        public void Dust() { active_state = new LinkedList<Object>(); }
+        public void Sweep() { dormant_states.Clear();  }
+        public void Scrub() { Dust(); Sweep(); }
+        
+        public string Signature()
+        {
+            string ID = "[::]";
+
+            foreach (var item in active_state)
+            { ID += " | " + item.GetHashCode().ToString() + " | "; }
+
+            return ID+"[::]";
+        }
+        public string Dump()
+        {
+            if (dormant_states.Count == 0)
+                return "[::{::}::][::{::}::]";
+
+
+            string ID = "\n[::{::}::]";
+
+            //do // gets the hashes of the lists themselves, idk if those hashses change depending on whats in the lists (?) (seem to?)
+            //{ ID += "\n| " + dormant_states.Pop().GetHashCode().ToString() + " | "; }
+            //while (dormant_states.Count != 0);
+
+            do
+            {
+                Wake();
+                ID += "\n[::]";
+                foreach (var item in active_state)
+                ID += "| " + item.GetHashCode().ToString() + " |";
+                ID += "[::]";
+            }
+            while (dormant_states.Count != 0);
+
+
+            return ID + "\n[::{::}::]";
+        }
+
+
+
+        public static bool operator == (State a, State b)
+        {
+            List<object> aVal = a.active_state.ToList();
+            List<object> bVal = b.active_state.ToList();
+
+            if (a.active_state.Count() != b.active_state.Count)
+                return false;
+
+            for (int i = 0; i < aVal.Count; i++)
+                if (aVal[i].GetHashCode() != bVal[i].GetHashCode())
+                    return false;
+
+            return true;
+        } // END_OPERATOR
+
+        // this doesn't exactly work for hash codes
+        // thigs can be not equal & return same code
+        // however, cannot be equal & return different
+        // codes, so overall works for this purpose
+        public static bool operator != (State a, State b)
+        {
+            List<object> aVal = a.active_state.ToList();
+            List<object> bVal = b.active_state.ToList();
+
+            if (a.active_state.Count() != b.active_state.Count)
+                return true;
+
+            for (int i = 0; i < aVal.Count; i++)
+                if (aVal[i].GetHashCode() != bVal[i].GetHashCode())
+                    return true;
+            
+            return false;
+        } // END_OPERATOR
+
+        /*
+        
+        //if ( a.active_state.Last().GetHashCode() == b.active_state.Last().GetHashCode()) // 
+            //return true;
+        //else { return false; }
+
+        //if (a.active_state.Last().GetHashCode() == b.active_state.Last().GetHashCode())
+            //return false;
+        //else { return true; }
+
+        */
+        
+        // [These worked in getting equality, so issue is object type
+        // doesn't implement an equality operator (?)
+        // (int)a.active_state.Last() == ((int)b.active_state.Last())
+        // (a.active_state.Last.GetType() == b.active_state.Last.GetType())
+
+        // [Didn't really work but investigate later]
+        // Type a2 = a.active_state.Last.GetType();
+        // Type b2 = a.active_state.Last.GetType();
+        // ((Type)a2.GetType())a.active_state.Last();
+    } //END_STRUCT
+
+-----------------------------------------------------------|-----------------------------------------------------------
+
+[03-07-2024][005]
+(from Agent)
+
+    private Card drawCard(Deck theDeck = null)
+    {
+        if (theDeck != null && hand.Count < maxCards)
+            return theDeck.Draw();
+        else if (theDeck == null && hand.Count < maxCards)
+            return myDeck.Draw();
+        else return null;
+    }
+
+-----------------------------------------------------------|-----------------------------------------------------------
+
+[03-07-2024][006]
+(from REGENIX.Bount)
+
+    public class LOGGER
+    {
+        public struct LOG
+        {
+            public string act_id;
+            public char type_code;
+            public double start_AMT;
+            public double change_AMT;
+            public double end_AMT;
+
+            public LOG(string a, char b, double c, double d, double e)
+            {
+                act_id = a;
+                type_code = b;
+                start_AMT = c;
+                change_AMT = d;
+                end_AMT = e;
+            }
+        }
+
+        string id;
+        double balance;
+        int action_count;
+
+        private SortedDictionary<int, LOG> logLog = new(); // (id, typecode; start, action, end)
+
+        const char _D = '+'; // typecode_deposit
+        const char _W = '-'; // typecode_withdraw
+
+
+        public string ID { get { return id; } }
+        public double Balance { get { return balance; } } // these should really be private!
+        public int Actions { get { return action_count; } }
+
+
+        public LOGGER()
+        {
+            id = "[?]";
+            balance = 0;
+            action_count = 0;
+
+        }
+
+        public LOGGER(string the_ID, double starting_balance = 0)
+        {
+            id = the_ID;
+            balance = starting_balance;
+
+        }
+
+
+        public double Withdraw(double the_AMT)
+        {
+            double start_AMT, change_AMT, end_AMT;
+            start_AMT = Balance;
+            change_AMT = (-1) * the_AMT;
+            end_AMT = Balance + change_AMT;
+
+            LogIt((start_AMT, change_AMT, end_AMT));
+
+            return balance += change_AMT;
+        }
+
+        public double Deposit(double the_AMT)
+        {
+            double start_AMT, change_AMT, end_AMT;
+            start_AMT = Balance;
+            change_AMT = the_AMT;
+            end_AMT = Balance + change_AMT;
+
+            LogIt((start_AMT, change_AMT, end_AMT));
+
+            return balance += change_AMT;
+        }
+
+        public double Alter(double the_AMT)
+        {
+            double start_AMT, change_AMT, end_AMT;
+            start_AMT = Balance;
+            change_AMT = the_AMT;
+            end_AMT = Balance + change_AMT;
+
+            LogIt((start_AMT, change_AMT, end_AMT));
+
+            return balance += change_AMT;
+        }
+
+        public void LogIt((double start_AMT, double change_AMT, double end_AMT) AMT)
+        {
+            char type_code; // = ' '
+
+            if (AMT.start_AMT == AMT.end_AMT)
+                return;
+            else if (AMT.start_AMT < AMT.end_AMT)
+                type_code = _D;
+            else if (AMT.start_AMT > AMT.end_AMT)
+                type_code = _W;
+            else
+                return; // this is for sure an error state
+
+            LOG targLog = new(this.id, type_code, AMT.start_AMT, AMT.change_AMT, AMT.end_AMT);
+            this.logLog[this.action_count++] = (targLog);
+        }
+
+        public void WalkLogs()
+        {
+            // reveals trailing double rounding inaccuracies but seems to work alright
+            for (int i = 0; i < action_count; i++)
+            {
+                CheckLog(i);
+            }
+        }
+
+        public void CheckLog(int nDex)
+        {
+            var A = logLog[nDex];
+            Console.WriteLine("Bount ID: " + A.act_id);
+            Console.WriteLine("Action Type: " + "[" + A.type_code + "]");
+            Console.WriteLine("Start Amount: " + A.start_AMT);
+            Console.WriteLine("Change Amount: " + A.change_AMT);
+            Console.WriteLine("End Amount: " + A.end_AMT);
+        }
+
+        public LOG getLog(int nDex)
+        {
+            var A = logLog[nDex];
+
+            LOG targLog = new(A.act_id, A.type_code, A.start_AMT, A.change_AMT, A.end_AMT);
+
+            return targLog;
+        }
+
+    }
+
+-----------------------------------------------------------|-----------------------------------------------------------
+
+[03-08-2024][001]
+(from ROUGH_ELEVENS.DECK)
+
+    /*
+    public void deck_list()
+    {
+        int[] buffer = PrepShuffle(mCopy.Count);
+
+        for (int i = mCopy.Count; i > 0; i-- )
+            cards.Add(mCopy[buffer[i]]);
+    } // END_FUNC
+    */
+    
+    // -----------------------------------------------------------|-----------------------------------------------------------
+    public static void PreShuffle_00(int[] tempArray, int deckSize, int delvesLeft) //, int swapLimit = 100 
+    {
+
+
+        if (--delvesLeft == 0)
+            return;
+        int swapLimit = 2 * deckSize - delvesLeft;
+        bool same_spot = false;
+
+        for (int i = 0; i < swapLimit; i++)
+        {
+            int a = randi.Next(0, deckSize);
+            int b = randi.Next(0, deckSize);
+            Swap(ref tempArray[a], ref tempArray[b]); //ref tempArray[randi.Next(0, deckSize)], ref tempArray[randi.Next(0, deckSize)]
+        }
+
+
+        for (int i = 0; i < tempArray.Length; i++)
+        {
+            if (tempArray[i] == i)
+            {
+                Console.WriteLine("Temp[i]: " + tempArray[i] + " i: " + i);
+                same_spot = true;
+                Swap(ref tempArray[i], ref tempArray[randi.Next(0, deckSize)]);
+                Console.WriteLine("Swapped to: " + tempArray[i] + " i: " + i);
+            }
+        }
+
+        //showArray(tempArray);
+
+        if (same_spot == true)
+            PreShuffle_00(tempArray, deckSize, delvesLeft);
+
+        }
+
+ // -----------------------------------------------------------|-----------------------------------------------------------
+
+        public static void PreShuffle_01(int[] tempArray, int deckSize, int swapLimit) //, int swapLimit = 100 
+        {
+            for (int i = 0; i < swapLimit; i++)
+            {
+                int a = randi.Next(0, deckSize);
+                int b = randi.Next(0, deckSize);
+                Swap(ref tempArray[a], ref tempArray[b]); //ref tempArray[randi.Next(0, deckSize)], ref tempArray[randi.Next(0, deckSize)]
+            }
+        }
+ // -----------------------------------------------------------|-----------------------------------------------------------
+    
+    */
+
+        // -----------------------------------|------------
+        static void SelectionSort(int[] arg)
+        {
+            int n = arg.Length;
+
+            for (int i = 0; i < n - 1; i++)
+            {
+                int minIndex = i;
+                for (int j = i + 1; j < n; j++)
+                    if (arg[j] < arg[minIndex])
+                        minIndex = j;
+
+                int temp = arg[minIndex];
+                arg[minIndex] = arg[i];
+                arg[i] = temp;
+            }
+            //return arr;
+        }
+
+        static void SelectionSort(List<int> arg)
+        {
+            int n = arg.Count;
+
+            for (int i = 0; i < n - 1; i++)
+            {
+                int minIndex = i;
+                for (int j = i + 1; j < n; j++)
+                    if (arg[j] < arg[minIndex])
+                        minIndex = j;
+
+                int temp = arg[minIndex];
+                arg[minIndex] = arg[i];
+                arg[i] = temp;
+            }
+            //return arr;
+        }
+        // -----------------------------------|------------
+
+        static void showArray(int[] arr, int lineLen = 10)
+        {
+            int n = arr.Length;
+            int entries_per_line = 0;
+            for (int i = 0; i < n; ++i) {
+                Console.Write(arr[i] + " ");
+                //if (i % lineLen == 0)
+                 //   Console.WriteLine('\n');
+                if (++entries_per_line >= lineLen)
+                {
+                    Console.WriteLine('\n');
+                    entries_per_line = 0;
+                }
+            }
+            Console.WriteLine();
+        }
+        // -----------------------------------|------------
+
+-----------------------------------------------------------|-----------------------------------------------------------
+
+[03-09-2024][001]
+(from ROUGH_ELEVENS.STRUCTS)
+
+    public struct RULESET
+    {
+
+        Dictionary <string, object> rule;
+        State specs;
+
+        public string rulesID;
+        public int tableHandSize;
+
+        public int pairCheck;
+        public int triadCheck;
+        public (int a, int b, int c) triadTuple;
+        public int[] triadCheckArray;
+        
+        State VictoryState;
+        State FailureState;
+
+        public RULESET()
+        {
+            rulesID = "[ELEVENS]";
+            tableHandSize = 9;
+
+            pairCheck = 11; // 10
+            triadCheck = 36;
+            triadTuple = (11, 12, 13);
+            triadCheckArray = [11, 12, 13];
+
+            VictoryState = new();
+            FailureState = new();
+        } // END_CONSTRUCTOR
+
+        public void makeRuleSet(Type code)
+        {
+
+            rule = new();
+            rule["rulesID"] = "[ELEVENS]";
+            rule["tableHandSize"] = 9;
+
+            rule["pairCheck"] = 11; // 10
+            rule["triadCheck"] = 36;
+            rule["triadTuple"] = (11, 12, 13);
+            //rule["triadCheckArray"] = [11, 12, 13]; // problem
+
+            rule["VictoryState"] = new();
+            rule["FailureState"] = new();
+        } // END_CONSTRUCTOR
+
+        public RULESET(string code = "ELEVENS")
+        {
+            rulesID = "[ELEVENS]";
+            tableHandSize = 9;
+
+            pairCheck = 11; // 10
+            triadCheck = 36;
+            triadTuple = (11, 12, 13);
+            triadCheckArray = [11, 12, 13];
+
+            VictoryState = new();
+            FailureState = new();
+        } // END_CONSTRUCTOR
+
+        public void stateInit()
+        {
+            //Specs = new State();
+
+            Specs.addField( (string)"[ELEVENS]" );
+            Specs.addField( (int)9 );
+            Specs.addField( (int)11 );
+            Specs.addField( (int)36 );
+            Specs.addField( ((int)11, (int)12, (int)13) );
+            Specs.addField( new int[] { 11, 12, 13 } );
+
+            Specs.addField( new State() );
+            Specs.addField( new State() );
+
+        }
+
+        // new int[11, 12, 13]; // this make a 3-dimentional array initialized & filled with ints, first to 11, then 12, then 13
+        // new int[] { 11, 12, 13 };  is what was looking for
+        // this is still super useful & feels like what one was looking for in terms of not haveing to do so many nest for each loop ?
+        // ie could do this for initializing / spell out a whole bunch (or exhaustive) combinations of enums (since they integers)
+        // the only issue is how to go through & type cast the ints in 
+
+    } // END STRUCT
+
+    public struct ELEVENS // const version ? figure out how do
+    {
+        public string rulesID; // = "[ELEVENS]"
+        public int tableHandSize; // = 9
+
+        public int pairCheck; // = 11
+        public int triadCheck; // = 36
+        public (int a, int b, int c) triadTuple; // = (11, 12, 13)
+        public int[] triadCheckArray; // = [11, 12, 13]
+
+        State VictoryState; // validMoveExists == false && tableHandCount == 0
+        State FailureState; // validMoveExists == false && tableHandCount != 0
+
+        public int deckSize;// = 52
+        public int tokenFieldsCount; // = 2
+        public int tokenEnumRanges; // (4, 13) (rank, suit)
+    }
+
+-----------------------------------------------------------|-----------------------------------------------------------
+
+[03-09-2024][002]
+(from ROUGH_ELEVENS.HOUSE)
+
+    public void PlayLoop(string mode = "AUTO")
+    {
+        Console.WriteLine("[----------------------------------------------|----------------------------------------------]");
+
+        // setup data
+        RULESET rules = new();
+        tableSettings((int)rules.rule["tableHandSize"]); // rules.tableHandSize
+
+        int turnCounter = 0; // could this be habled by a genereal / generic counter function ?
+        bool GameOver; // trade off of global vs local game end variable
+        // end setup data
+            
+        int ex_00 = (int) rules.rule["tableHandSize"];
+        int ex_01 = (int) rules.rule["pairCheck"];
+        int ex_012 = (int) rules.rule["triadCheck"];
+        (int, int, int) ex_02 = ((int, int, int)) rules.rule["triadTuple"];
+        int[] ex_03 = (int[]) rules.rule["triadCheckArray"];
+
+        do {
+            Console.Write("[" + (turnCounter++) + "]");
+            GameOver = !validMoveExists(TableSet, (int)rules.rule["pairCheck"], ((int, int, int))rules.rule["triadTuple"]);
+
+            switch (mode)
+            {
+                case "AUTO":
+                    AutoMove((int)rules.rule["pairCheck"], (int)rules.rule["triadCheck"], (int[])rules.rule["triadCheckArray"]);
+                    break;
+                case "MANUAL":
+                    ManualMove((int)rules.rule["pairCheck"], (int)rules.rule["triadCheck"], (int[])rules.rule["triadCheckArray"]);
+                    break;
+                default:
+                    break;
+            } // END_SWITCH
+        } while (GameOver != true);
+
+        EvaluateGameState();
+
+        Console.WriteLine("[----------------------------------------------|----------------------------------------------]");
+    }
+
+-----------------------------------------------------------|-----------------------------------------------------------
+[03-10-2024][001
+(from REGENIX.SCRIBE)]
+
+    string scuff_00 = '[' + DateTime.Now.Ticks.ToString() + ']'; //DateTime.Now.ToString()
+
+    char[] charai = DateTime.Now.ToString().ToCharArray();
+    string hack_00 = "";
+
+    for (int i = 0; i < charai.Length; i++)
+    {
+        if (charai[i] == '/' || charai[i] == ':' || charai[i] == ' ')
+            charai[i] = '-';
+        hack_00 += (charai[i]);
+    }
+    Console.WriteLine(DateTime.Now.Day.ToString() );
+    Console.WriteLine(DateTime.Now.Month.ToString() );
+    Console.WriteLine(DateTime.Now.Year.ToString() );
+    Console.WriteLine(DateTime.Now.DayOfYear.ToString() );
+
+
+
+
+    string option_00 = "[" + hack_00 + "]";
+    string option_01 = ""; // this would be day-month-year with leading zeros but can't be arsed
+
+-----------------------------------------------------------|-----------------------------------------------------------
+
+-----------------------------------------------------------|-----------------------------------------------------------
+
+-----------------------------------------------------------|-----------------------------------------------------------
+
+-----------------------------------------------------------|-----------------------------------------------------------
+
+-----------------------------------------------------------|-----------------------------------------------------------
+
+-----------------------------------------------------------|-----------------------------------------------------------
+
+-----------------------------------------------------------|-----------------------------------------------------------
+
+-----------------------------------------------------------|-----------------------------------------------------------
+
+-----------------------------------------------------------|-----------------------------------------------------------
+

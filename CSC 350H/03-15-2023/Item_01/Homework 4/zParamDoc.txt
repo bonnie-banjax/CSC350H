@@ -1,0 +1,114 @@
+
+ANDREW MOBUS
+02-28-2024
+CSC-350H
+Elevens Assignment
+
+
+
+//--------------------------------------------------------|--------------------------------------------------------\\
+
+(1). Your task is to design the initial class structure for the Elevens card game in C#. You are not required to 
+implement the methods fully but should define class names, method prototypes (including parameters and return types),
+and brief comments explaining the purpose of each method and class. Your design should be capable of supporting the
+full gameplay of  Elevens, including setup, play, and termination conditions.
+
+Design Constraints:
+
+    Use appropriate data structures to manage the cards in the deck and on the board.
+    Include basic error handling and validation for methods, such as dealing cards when the deck is empty or 
+	selecting an invalid card combination.
+    Ensure your design allows for easy extension or modification. Consider how your design can facilitate code
+	reuse and ensure modularity. Your goal is to create a design that not only meets the needs of the Elevens 
+	game but can also be easily adapted or extended to accommodate variations of the game, such as Thirteens and 
+	Tens. These variations follow similar rules but with different win conditions or card combinations.
+
+Deliverables: Submit a document containing your class designs, including class names, method prototypes, and comments 
+describing the purpose and functionality of each part of your design. Diagrams illustrating the relationships between
+classes are encouraged but not required.
+
+//--------------------------------------------------------|--------------------------------------------------------\\
+
+-->  General System Description Requirements:
+-> the total game set is 52 cards; four sets of values [1-10 + J, Q, K]
+-> the table set is exactly 9 cards, except while processing a move
+-> the table set cards are the only visable cards; the deck values are hidden
+-> valid pairings are two cards that add to exactly 11, and one exception
+-> the exception case is a unordered triad made of exactly one jack, one queen, one king
+-> the suit of cards in not relevant for the game and can be entirely ignored
+-> the game is over when there are no more legal pairs (or the triad case) on the table set
+-> if the deck and table set are empty when the game ends, it is a win, otherwise, it is a loss
+-> there is no draw condition; a game is either a win, or a loss
+-> when a valid pair or the valid triad are picked, they are removed from the table set
+-> selecting a valid pair or triad is the only way cards can be removed from the table set
+-> whenever cards are removed from the table set, and equal number are drawn from the deck
+and added to the table set
+-> the discard pile isn't used in any capacity
+-> there is no way moves can be undone
+-> the system is deterministic and based entirely on the card order after shuffling
+-> there is no means of interacting with the deck other than drawing cards to replace cards
+removed via picking a valid pair or triad
+
+--> System Requirements
+-> detect valid pairings when presented as input
+-> ignore invalid input & notify user that the input was invalid
+-> process move submissions as valid or invalid
+-> process valid moves by removing the input set from the table set
+-> replace removed elements from table set with elements from deck set
+-> process table state to determine if any legal moves exists
+-> on detection that no legal moves exists, determine whether the state is a win or loss
+-> notify the user when the game is won or lost
+-> a shuffle / restart action the user can select at any time to make a new game
+-> the only user input during a game is the section of cards from the table set
+-> display the values of the table set
+-> display the remaining number of cards in the deck
+
+//--------------------------------------------------------|--------------------------------------------------------\\
+
+--> [Object]: Table Set
+-> minimum: static array of (x) card objects
+-> ostentiably 3x3 (matrix? grid? table?)
+-> objects removed from table set don't have to go anywhere, but could
+go into a basic linkedList discard if desired
+-> array slots written to by (HOUSE) only; player object doesn't write to the table directly
+
+--> [Object]: Deck Set
+-> exactly as deck of cards
+-> draw method
+-> shuffle method
+-> utilizes [Card] object
+
+--> [Object]: [HOUSE] (Agent)
+-> has the rules for the game, and performs the actions (??)
+-> this needs some (a number) of methods present in proto player class
+
+--> [Object]: [Player] (Agent) 
+-> inputs the array slots they suggest have matching values
+-> otherwise class doesn't really do much, or at all
+
+--> [Object]: [Card]
+-> implemented as prior, with two enum fields for rank & suit
+
+--> Algorithm: valid move detection
+-> two array slots from table set form a valid move pair if their (enum value) adds up to 11
+-> the ("there exists valid move") table check is a simple linear search, where the first value is
+checked against the rest of the values, and if that doesn't yield, the next value is checked against the
+rest (expect for the first value)
+-> (cont.) as long as a pair exists, can return early, don't need to exhaustively check
+
+--> Move Validation:
+-> don't even need to do an (if/then) statement, can just do (enum + enum) for func(int arg) into a switch
+statement (because theoretically faster (?)) where (well, maybe would be more reusable to have it pass
+the (expected value?) which maybe could do switch off of (since an int?) (try this right now because feel
+like it doen't exactly work because of how switch statements work)
+-> implemented for both individual moves & broad table detection (need refinement)
+
+//--------------------------------------------------------|--------------------------------------------------------\\
+
+//--------------------------------------------------------|--------------------------------------------------------\\
+
+//--------------------------------------------------------|--------------------------------------------------------\\
+
+//--------------------------------------------------------|--------------------------------------------------------\\
+
+//--------------------------------------------------------|--------------------------------------------------------\\

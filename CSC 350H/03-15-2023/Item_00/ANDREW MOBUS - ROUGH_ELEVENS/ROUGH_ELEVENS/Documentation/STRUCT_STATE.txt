@@ -1,0 +1,326 @@
+﻿
+-----------------------------------------------------------|-----------------------------------------------------------
+
+[03-08-2024][000]
+
+--> [WHAT I AM]: (State Struct Living Documentation)
+-> development commentary from State struct, where the comment became large enough that rather than reburying
+in the mass grave documentation, just placing here since for sure not want to bury
+-> will therefore also remove from massgrave since no reason
+--> Format & Style Guides
+-> Code sections should be put in dated encapsulation blocks, where the blocks are whatever
+code that has an existing relationship to itself is delineated by the top bar sections, indicating unit,
+with the dating providing a loose time key for (very rough) indexing
+-> let date be provided in the [DD-MM-YYYY] format ( - instead of / for serpations) with leading zeros where needed
+-> moving forward, may optionally use additional trailing [xxx] to indicate order of dumping from that date,
+ie items gain a dump index sequentially, merely based on the order in which they are dumped
+-> line length should be limited to the length of the top bar (reference bar), which are the unit delineators
+-> may include name of source file from which dumped (name at time) but not as part of the index code
+
+
+--> [MAY OR MAY NOT BE RELEVENT]
+-> strings that look like a pair of brackets with (symmetrical?) non-alphanumeric characters between them
+(any symbol thats not a number or a letter) is likely a log refernce symbol, which are extra rough in terms
+of development cycle and subject to unstructured variance until a symbol creation system is developed
+-> examples: "[::]" , "[::{::}::]" , "[=]" , "[?]", "[--|--]"
+
+-----------------------------------------------------------|-----------------------------------------------------------
+
+[03-08-2024][001]
+(From STRUCTS, STATE)
+
+        // [GIANT COMMENTARY BLOCK]
+
+        // a linked list of objects for creating an dynamic sized list of 
+        // state ("fields") that are the conditions of the state, where
+        // then the (lifetime?) stack is a stack of these lists
+        // each "state" is a linked list of terms, where then the
+        // purpose of the State struct is to group & organize these
+        // since the state allows them to be (held in the wings) (what?)
+
+        // give pseudo index capability for active state by makeing
+        // iterator with count that just pass integer for list position
+        // which is just the number of times it does the pointer walk
+        // maybe call function Walk (eh call it get Index)
+
+        // potentially rework from using lists to using a (HashSet?)
+        // (ordered dictionary?) (SortedDictionary?) (HashMap?)
+        // for both implementing the Chain structure and for that
+        // the (active state) can both have all of its components
+        // (contents) accessed with identical ease, as well as
+        // making the ordering less of a concern
+
+        // kind if reinventing the type wheel, but the use case
+        // going forward is the (Enum State) (Uate?) (Utate?) (Ute?)
+        // where the point of the state struct is that ir provides 
+        // a basis for impleme nting the (prototype?) (Command?)
+        // design pattern where there would be a (master table
+        // of certain composed states) so that things can just refer
+        // back to those instances, where those instances can have
+        // their (properties / attributes / fields) (state)
+        // modified as needed (unclear why this is meaningful)
+
+        // question of whether to keep using the generic stack
+        // as provided or to remake using linked list (which is
+        // potentially worth doing just to make a stack oneself
+        // (shouldn't be too hard) as well as allowing more
+        // control over the operations (ie something that
+        // keeps the head & tail what & where they are, and
+        // (removes / unserts) (the / a) (range?) (either
+        // directly specify range, or like proportional shrink
+        // by taking structure size, taking percetange argument,
+        // calculating how much of the structure needs to be removed,
+        // finding the median (?) points to most symmetrically
+        // remove elements from the structure so that (equal)
+        // amount present in relation to either end
+
+        // the State struct could (and might well will) replace things
+        // like the (Card Class) or, rather, define the card object
+        // in terms of State objects; this is similar to the attempt
+        // to make a (Token) class in (REGENIX) project, as well as
+        // some aspects of the Flux struct, and perhaps just reflects
+        // growth in capability and understanding of data structures
+
+        // Right now, State refers to <Objects> which, while has a place,
+        // the more focused and meaningful implementation is for use as
+        // an Enum wrapper since (a struct with each user Enum type allows
+        // a somewhat succinct backtable to work with (what?) ) where
+        // the Enums, since are valued as interger (objects) also
+        // (interact with the GetHashCode() function well?) or
+        // rather can define own hash function for how the Enums
+        // all fit together, in a way that minimizes collisions and
+        // allows a form of fluidity in converting items to others
+
+        // need to make active_state a stable cache value (an indexable
+        // value system) so that don't have to perform the (to list)
+        // (and/or) (to array) conversion for each time checking the
+        // state value (as well as providing for a more immediate
+        // version of memberwise comparison in for the states
+
+        // need to figure out (if / how) (copy & move contructors) are
+        // revelant here, because if this was C++ they definitely
+        // would be, and would like to implement more operator
+        // overloads for how state structs interact; chief is
+        // the ability to assign a state to another state
+
+        // deep copy vs shallow copy, and then for state there's also
+        // the difference between grabbing the active state and taking
+        // the dormant stack (or whatever data structure is used going
+        // forward), as well as the distinct between copying
+        // those stack members and taking them
+
+        // when it comes to (move & take) theres some ease in using the
+        // stack object paradigm because by popping items off the stack
+        // to load up another stack, all the information is taken off of
+        // the existing stack, which just becomes a hollow state object
+        // not memory intensive (?); the information change of hands
+        // may allow for defrag (defragmentation) of allocated space and
+        // more efficient state cache systems
+
+        // the current set up with a (top linked list) where it sort of makes
+        // sense in terms of the ability to add items to it, but get the
+        // feeling that a (hashmap of some kind) would perform the
+        // desired relationship of ease in dynamic allocation) in a manner
+        // that makes (as opposed to using the List container which has the
+        // vector allocation issue thing (need to clarify & elaborate)
+
+        // (cont.) where having the state stack (or stack inspired) structure
+        // make senseo construct a pushdown automata fixed state machine
+        // and the (chain) structure is in (nacentcy (nacency?)) but these
+        // may be (explorations / extensions) for a seperate project, and
+        // just develop the start of the state system as it can be used to
+        // illustrate the swappable (win / lose) for different (card games)
+
+
+        // also useful or important for (Wave Fuction Collapse) or
+        // (Code Generators? Generators?) (and/or) (profile testing?)
+        // its like unit tests but its more abstract and therefore less
+        // like writing the same code twice (like its tests that takes
+        // auto generated input in order to just have a way wider range
+        // (sort of, not accurate description)
+
+
+
+        // (*this) is [ LinkedList<Object> active_state ]
+        // (*this) list is the (multi-length set of "fields" for the state)
+        // should this be renamed to better reflec the construction level
+        // role that this list is here for flexibility in deciding how
+        // many fields a state has on the fly, as opposed to using it
+        // as the active state itself; thought, the ability to compare
+        // the hashcodes of the lists (not sure how it works for
+        // array of objects) which can be used as a first glance
+        // for equality &/ comprability checking (since if length
+        // isnt the same, definitely not (that works for arrays too)
+        // then (hashcode of container) (again, no issue) and then
+        // going element by element if required (so array, not list?)
+
+        // reason to use a seperate Object[] and LinkedList<Object>
+        // data structure, as opposed to a List<Object> is that
+        // the Object[] only exists as a data cache reference that
+        // more easily support a number of manipulations over the
+        // LinkedList format; in further iterations, the active_state
+        // list will likely be composes of pointers to the objects,
+        // rather than necessarily to the objects themselves, and
+        // the cache will be the localized copy (so the state
+        // object has a copy of that data), where as the dormant
+        // states will likely be stored in a(n) (mHash / Heque)
+
+        // (meaning an mCopy style maestro (hash) strucutre)
+        // when off loaded, since hashtabels (hash sets (?))
+        // are must efficient for larger data sets but inefficient
+        // for smaller ones) (so for dorm  states just need a
+        // constructable records (a reference) in order to make
+        // a new one from that state example) in the vein of
+        // (Command? Prototype?) design pattern
+
+        // In term, the (background mHash structure) makes for
+        // a real definition for a ("Heque") where the State
+        // structs treat their dormant_states as existing in
+        // a stack data structure, but the implementation is
+        // (a deque?) (really just a LinkedList with external
+        // access specifications) where the (maestro) can process
+        // dormed states from the (bottom of the stack) to see
+        // if there are any duplicates (identical permutations
+        // across different instances), so if it finds them,
+        // it will pull them out from the bottom of the stack
+        // (since for it its a deque), create an mHash version,
+        // then replace that pulled state with an mHash referencing
+        // copy at the bottom of the stack (which it can do because
+        // it knows everyone else only adds to the stack from the
+        // other side like a stack)
+
+
+        // this allows for data space optimization and emergent pattern
+        // recognition since all the Heque Maestro needs is to know if the
+        // state items are equivalent (potentially even just on the hashcode
+        // level, but probably better to just use that for excluding any 
+        // further comparision by saying (if a.HashCode != b.HashCode) )
+
+        // however, here hash collisions could be used as a form of
+        // synonym pattern recognition, especially if a custom hashing
+        // function is used for the purpose of taking (very similar states)
+        // (well, thats really dependant on how a hashing function works since
+        // similar data isn't guarenteed to provide similar hash outputs)
+        // though, for things like dealing with (Enums), where no matter what
+        // the enum is, is fundementally shares the fact that its an Enum, and
+        // therefore (has a certain way about it) (unclear) (maybe meaning that
+        // the interactions between the data are pretty abstract away from what
+        // the computer sees and therefore both in defining how an Enum might
+        // convert to whatever data type can use this (thought lost))
+
+        // part of the point is that Enums type is simultaneously like three
+        // different data types: the ("actual data") is an (unsigned) interger;
+        // a level up from that is that it is an Enum (enumeration) which is
+        // a meta-programming dynamic (is it?) (meaning the place in terms of
+        // how prgrogrammers relate & use them) (okish but elaborate); and
+        // (last?) is whatever the Enum type is, both for the purpose of how
+        // the programmer uses it, but also that that Enum has a distinct type
+        // (sort of a subtype situation); and together, that the computer does
+        // in fact have data representations of all three of these characteristics
+        // in looking at the (cluster structure (what?)) (ie, it knows theres an
+        // int, it knows the bespoke type is a bespoke type, and it knows it is
+        // (bespoke from / inherits (?)) from the Enum (Enumeration) type
+
+        // implementation note: pointer to the (bottom the stack)
+        // but is that just the head of a LinkedList 
+        // that it overwrites the bottom of the pushdown stack state
+        // feels like a solid move (since it means that position isn't
+        // ever null & it just gets (?)) but if can only access like a 
+        // (deque) then if do find duplicate states, once replace can't
+        // continue checking up that stack (unless it has a protocol to
+        // recognize an mHash copy) (which may well could)
+
+        // reason to have each state have a local stack is that (try to
+        // only check for duplicates when (have spare power) ) but also
+        // because maybe (mHash / MAESTRO) creates a reference stack for
+        // for states as becomes (emergent)) (this is not the thought)
+        // (thought was difference for active (business?) version and
+        // (datacollection prototype version) where the latter is used
+        // to figure out, find, and catalog the (finite states) that 
+        // will (pop up) and this is then (exported as data) to be used
+        // in full complilation(?) is this jsut a compiler (?))
+
+        // is it basically defining bespoke types in a way (useless comment)
+
+
+        // this paradigm is most likely closest to a garbage collector
+        // (after all, there's an explicit collection dynamic which
+        // results in greater memory availability post collection)
+        // but is perhaps conceptually a mix of attributes from
+        // (a garbage collector, a memory allocator, a compiler)
+        // where (though garbage collectors and memory allocators have
+        // meaningful overlap, they really aren't the same thing) (where
+        // here the memory allocator overlap pertinence is that the 
+        // LinkedList<Object> State storage (best fits / benefits)
+        // (solves and/or causes) (from) memory fragmentation, since
+        // the LinkedLists don't need contiguous memory blocks, and
+        // when apparent that the data can be centralized, the fragmention
+        // could be decreased by looking for the opened memory (well, it
+        // really does result in memory fragmentation, but for data that is
+        // in use it opens total memory and can be part of the defrag
+        // solution since consolidated states can be used for Flyweight)
+
+        // note: Flux is ("unsafe" ie unstable) State
+        // this is just a reason to keep both and also State is a
+        // more generic & widely used term, so if needed for this 
+        // paradigm can shift every word use of State over to Flux
+        // also converting Flux to State when (consolidated)
+
+        // dynamic a bit missed when discussing the defragging is that
+        // as a (preprocessing? refinement?) tool, the iteration start
+        // code can be run, and this tool can assist in optimizing to
+        // reduce memory fragmentation by finding what pieces of dynamic
+        // (note: giving Flux the (Dynamic) rather than (Object) root)
+        // state can be made static (as in computerd & optimized in
+        // compile time since not altered during run time
+
+        // Implementation note: the basic coreware of the [elevens game]
+        // system can be used as the jumping off point, the first abstraction
+        // to be replacing the cards with dynamic state objects (in that rather)
+        // than having the cards have (RANK & SUIT) predefined, when the deck makes
+        // the cards it is fed (prototypes) / (blueprints) / (specifications)
+        // for (all the desired fields) which then line up to (RANK & SUIT)
+        // might be easiest to first make (CARD) use (State) instead of (RANK & SUIT)
+        // and then once have that tied down make (CARD) into a (State Pattern) too
+
+
+        // maybe have way to make sure duplicated states aren't
+        // pushed on to the stack (ie a check that not trying to push
+        // an identical state, since there isn't any purpose for doing
+        // that; note that this only applies for the immediate preceding
+        // and subsequent states, since what this stack represents is
+        // change to state over time, which is why adjacent duplicates
+        // don't provide anying meaning information (except maybe that a
+        // potental for change occured
+
+        // in case describe above, this is where a (basically note state)
+        // that is not memory intensive might be pushed instead, like
+        // a placeholder value (an empty list works fine, its not literally null)
+        // except it probably be more useful for this information to be kept
+        // track in either a since integer counter variable, or a list
+        // that accepts the push (so for a given state, any time the state would
+        // potentially have changed but didn't would have its counter increase)
+        // but this is so far down the implementation road that this note will
+        // suffice for remembering this possibility exists, but can otherwise
+        // be excluded from all consideration until or if it rears again
+
+-----------------------------------------------------------|-----------------------------------------------------------
+
+[03-10-2024][001]
+(From REGENIX.STRUCTS)
+
+        //  all the clearing functions being labeled as forms
+        //  of cleaning & doing all is therefore Clean()
+        //  kind of pointless just like the idea
+        //  on second thought, Dust() makes a lot of sense
+        // for clearing the cache array (the thing that most
+        // often needs to be cleared) and then Sweep() would
+        // be for active_state (which is a list that exists
+        // largely for building on the fly fields), and
+        // then Scrub() would be clearing the stack, which
+        // makes sense in terms of the relative magnitude
+
+
+-----------------------------------------------------------|-----------------------------------------------------------
+
+-----------------------------------------------------------|-----------------------------------------------------------

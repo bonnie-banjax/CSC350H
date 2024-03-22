@@ -1,0 +1,9 @@
+D:\Users\ccnyt\OneDrive - CUNY\Documents\GitHub\CSC350\CardTest2\CardTest2\bin\Debug\CardTest2.exe.config
+D:\Users\ccnyt\OneDrive - CUNY\Documents\GitHub\CSC350\CardTest2\CardTest2\bin\Debug\CardTest2.exe
+D:\Users\ccnyt\OneDrive - CUNY\Documents\GitHub\CSC350\CardTest2\CardTest2\bin\Debug\CardTest2.pdb
+D:\Users\ccnyt\OneDrive - CUNY\Documents\GitHub\CSC350\CardTest2\CardTest2\bin\Debug\Cards2.dll
+D:\Users\ccnyt\OneDrive - CUNY\Documents\GitHub\CSC350\CardTest2\CardTest2\obj\Debug\CardTest2.csproj.AssemblyReference.cache
+D:\Users\ccnyt\OneDrive - CUNY\Documents\GitHub\CSC350\CardTest2\CardTest2\obj\Debug\CardTest2.csproj.CoreCompileInputs.cache
+D:\Users\ccnyt\OneDrive - CUNY\Documents\GitHub\CSC350\CardTest2\CardTest2\obj\Debug\CardTest2.csproj.CopyComplete
+D:\Users\ccnyt\OneDrive - CUNY\Documents\GitHub\CSC350\CardTest2\CardTest2\obj\Debug\CardTest2.exe
+D:\Users\ccnyt\OneDrive - CUNY\Documents\GitHub\CSC350\CardTest2\CardTest2\obj\Debug\CardTest2.pdb

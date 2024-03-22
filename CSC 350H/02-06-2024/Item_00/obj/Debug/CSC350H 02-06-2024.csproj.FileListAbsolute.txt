@@ -1,0 +1,7 @@
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\CSC350H 02-06-2024\obj\Debug\CSC350H 02-06-2024.csproj.AssemblyReference.cache
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\CSC350H 02-06-2024\obj\Debug\CSC350H 02-06-2024.csproj.CoreCompileInputs.cache
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\CSC350H 02-06-2024\bin\Debug\CSC350H 02-06-2024.exe.config
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\CSC350H 02-06-2024\bin\Debug\CSC350H 02-06-2024.exe
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\CSC350H 02-06-2024\bin\Debug\CSC350H 02-06-2024.pdb
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\CSC350H 02-06-2024\obj\Debug\CSC350H 02-06-2024.exe
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\CSC350H 02-06-2024\obj\Debug\CSC350H 02-06-2024.pdb

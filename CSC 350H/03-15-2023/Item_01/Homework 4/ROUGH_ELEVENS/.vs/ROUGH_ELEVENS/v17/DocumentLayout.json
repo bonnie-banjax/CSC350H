@@ -1,0 +1,244 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E3C6CE60-4F78-4088-8205-273E1E90D267}|ROUGH_ELEVENS.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\homework 4\\rough_elevens\\house.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3C6CE60-4F78-4088-8205-273E1E90D267}|ROUGH_ELEVENS.csproj|solutionrelative:house.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3C6CE60-4F78-4088-8205-273E1E90D267}|ROUGH_ELEVENS.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\homework 4\\rough_elevens\\documentation\\bulkcode.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{E3C6CE60-4F78-4088-8205-273E1E90D267}|ROUGH_ELEVENS.csproj|solutionrelative:documentation\\bulkcode.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3C6CE60-4F78-4088-8205-273E1E90D267}|ROUGH_ELEVENS.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\homework 4\\rough_elevens\\core.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3C6CE60-4F78-4088-8205-273E1E90D267}|ROUGH_ELEVENS.csproj|solutionrelative:core.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3C6CE60-4F78-4088-8205-273E1E90D267}|ROUGH_ELEVENS.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\homework 4\\rough_elevens\\documentation\\struct_state.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{E3C6CE60-4F78-4088-8205-273E1E90D267}|ROUGH_ELEVENS.csproj|solutionrelative:documentation\\struct_state.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3C6CE60-4F78-4088-8205-273E1E90D267}|ROUGH_ELEVENS.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\homework 4\\rough_elevens\\documentation\\massgrave_00.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{E3C6CE60-4F78-4088-8205-273E1E90D267}|ROUGH_ELEVENS.csproj|solutionrelative:documentation\\massgrave_00.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A577547E-7FA6-4AFF-ACBC-4026B33BD560}|..\\ROUGH_ELEVENS_TESTS\\ROUGH_ELEVENS_TESTS.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\homework 4\\rough_elevens_tests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3C6CE60-4F78-4088-8205-273E1E90D267}|ROUGH_ELEVENS.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\homework 4\\rough_elevens\\structs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3C6CE60-4F78-4088-8205-273E1E90D267}|ROUGH_ELEVENS.csproj|solutionrelative:structs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3C6CE60-4F78-4088-8205-273E1E90D267}|ROUGH_ELEVENS.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\homework 4\\rough_elevens\\rough_elevens.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{E3C6CE60-4F78-4088-8205-273E1E90D267}|ROUGH_ELEVENS.csproj|solutionrelative:rough_elevens.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3C6CE60-4F78-4088-8205-273E1E90D267}|ROUGH_ELEVENS.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\homework 4\\rough_elevens\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3C6CE60-4F78-4088-8205-273E1E90D267}|ROUGH_ELEVENS.csproj|solutionrelative:enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3C6CE60-4F78-4088-8205-273E1E90D267}|ROUGH_ELEVENS.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\homework 4\\rough_elevens\\card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3C6CE60-4F78-4088-8205-273E1E90D267}|ROUGH_ELEVENS.csproj|solutionrelative:card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3C6CE60-4F78-4088-8205-273E1E90D267}|ROUGH_ELEVENS.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\homework 4\\rough_elevens\\validator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3C6CE60-4F78-4088-8205-273E1E90D267}|ROUGH_ELEVENS.csproj|solutionrelative:validator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3C6CE60-4F78-4088-8205-273E1E90D267}|ROUGH_ELEVENS.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\homework 4\\rough_elevens\\agent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3C6CE60-4F78-4088-8205-273E1E90D267}|ROUGH_ELEVENS.csproj|solutionrelative:agent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3C6CE60-4F78-4088-8205-273E1E90D267}|ROUGH_ELEVENS.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\homework 4\\rough_elevens\\deck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3C6CE60-4F78-4088-8205-273E1E90D267}|ROUGH_ELEVENS.csproj|solutionrelative:deck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "STRUCT_STATE.txt",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\Documentation\\STRUCT_STATE.txt",
+              "RelativeDocumentMoniker": "Documentation\\STRUCT_STATE.txt",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\Documentation\\STRUCT_STATE.txt",
+              "RelativeToolTip": "Documentation\\STRUCT_STATE.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-03-15T05:10:41.122Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BULKCODE.txt",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\Documentation\\BULKCODE.txt",
+              "RelativeDocumentMoniker": "Documentation\\BULKCODE.txt",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\Documentation\\BULKCODE.txt",
+              "RelativeToolTip": "Documentation\\BULKCODE.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACkAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-03-15T05:07:10.726Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ROUGH_ELEVENS",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\ROUGH_ELEVENS.csproj",
+              "RelativeDocumentMoniker": "ROUGH_ELEVENS.csproj",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\ROUGH_ELEVENS.csproj",
+              "RelativeToolTip": "ROUGH_ELEVENS.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-03-15T04:46:29.752Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MASSGRAVE_00.txt",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\Documentation\\MASSGRAVE_00.txt",
+              "RelativeDocumentMoniker": "Documentation\\MASSGRAVE_00.txt",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\Documentation\\MASSGRAVE_00.txt",
+              "RelativeToolTip": "Documentation\\MASSGRAVE_00.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAHkBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-03-11T00:42:33.079Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "STRUCTS.cs",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\STRUCTS.cs",
+              "RelativeDocumentMoniker": "STRUCTS.cs",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\STRUCTS.cs",
+              "RelativeToolTip": "STRUCTS.cs",
+              "ViewState": "AQIAAIsAAAAAAAAAAAAqwAMBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-05T14:17:59.093Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CORE.cs",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\CORE.cs",
+              "RelativeDocumentMoniker": "CORE.cs",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\CORE.cs",
+              "RelativeToolTip": "CORE.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-29T02:46:53.934Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS_TESTS\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "..\\ROUGH_ELEVENS_TESTS\\UnitTest1.cs",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS_TESTS\\UnitTest1.cs",
+              "RelativeToolTip": "..\\ROUGH_ELEVENS_TESTS\\UnitTest1.cs",
+              "ViewState": "AQIAAHQAAAAAAAAAAAAiwKAAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-15T00:10:04.359Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HOUSE.cs",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\HOUSE.cs",
+              "RelativeDocumentMoniker": "HOUSE.cs",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\HOUSE.cs",
+              "RelativeToolTip": "HOUSE.cs",
+              "ViewState": "AQIAAFIAAAAAAAAAAAAswMYAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-29T03:22:46.157Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "VALIDATOR.cs",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\VALIDATOR.cs",
+              "RelativeDocumentMoniker": "VALIDATOR.cs",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\VALIDATOR.cs",
+              "RelativeToolTip": "VALIDATOR.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-01T17:14:43.145Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AGENT.cs",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\AGENT.cs",
+              "RelativeDocumentMoniker": "AGENT.cs",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\AGENT.cs",
+              "RelativeToolTip": "AGENT.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAL0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-29T03:33:55.249Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "DECK.cs",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\DECK.cs",
+              "RelativeDocumentMoniker": "DECK.cs",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\DECK.cs",
+              "RelativeToolTip": "DECK.cs",
+              "ViewState": "AQIAAIIAAAAAAAAAAAAcwK0AAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-29T03:27:51.272Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ENUMS.cs",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\ENUMS.cs",
+              "RelativeDocumentMoniker": "ENUMS.cs",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\ENUMS.cs",
+              "RelativeToolTip": "ENUMS.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-29T03:25:52.864Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CARD.cs",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\CARD.cs",
+              "RelativeDocumentMoniker": "CARD.cs",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\Homework 4\\ROUGH_ELEVENS\\CARD.cs",
+              "RelativeToolTip": "CARD.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-29T03:58:32.76Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

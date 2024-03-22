@@ -1,0 +1,131 @@
+ANDREW MOBUS
+02-20-2024
+NOTES FOR DAY
+FIRST PROJECT
+
+
+-> Unity homework upcoming
+-> project first step is making a (console version of card game (demo?))
+-> then will have to implement in unity framework
+-> make sure to internalize the techniques that will be presented in the tutorial
+-> tutorial won't be something go over in class (?)
+
+--> Game (Demo) Parameters
+-> setup has 9 dealt cards to start with
+-> pick up cards that add to 11
+-> can then deal two new carsd from deck
+-> make sure to update current deck size display
+-> if (J, Q, K) all appear on table at same time, can remove those all together
+-> win if all the cards are removed and deck is empty
+-> game has to moniter whether win or lose
+-> restart & replace functions / buttons (?)
+
+--> Solitate game of "Elevens"
+-> what is being described above
+-> suit value is ignored
+-> is there any strategy for this game, or is it deterministic ?
+-> feels like answer is latter, unless there are reasons to not
+take certain pairings, but seems not the case
+-> again, program needs to be able to detect if there are legal moves (?)
+-> player makes the moves, although it would be pretty simple to code
+up an automated play algorithm
+-> odds of winning are slightly better than 1-in-10
+
+--> Notes
+-> might be fun to make a version where competing against a timer (for the Algorithm Intelligence)
+that will make a legal move (if possible) after a given amount of time, and whoever finds the most
+pairings wins
+
+----------------------------------------------------------|----------------------------------------------------------
+
+Task: describe proposed system (for how to play)
+--> Step 1: valid pairings
+-> given the fully defined nature of the data set, there are limited number of valid combinations
+of card (token) values that add up to 11
+-> because the suit of cards isn't considered, this doesn't need to be factored in at all
+-> the win con check need only see if there are any legal moves on the (table)
+-> the data set can be further broken down into the pair (tuples) that make 11
+-> while (j, q, k) need to be considered for one exception, they are otherwise not a factor in consideration
+for valid moves; check that an instance of all three is present on polay table, if not rule out
+-> in defining the tuples, for a given token value there's only one workable value, so don't need to
+exhaustively check that form of combination, can just check if there is an instance of something present
+-> doesn't need to exhaustively find all moves, just needs to check if a move exists
+-> so, take first token value, the search the play set for it's matched value
+-> if it's matched value isn't found for each of the rest of the cards, move on the to second, following
+the selection sort method of ignoring the first index (since already checked it against other cards
+-> rather than check for (j, q, k) first, have it be an exhaust condition rather than pre check
+-> can do (switch?) for checking if valid for a given value?
+-> yes, because get first card value, then call switch function based on that which evalutes second card 
+
+
+--> Algorithm Check:
+-> backstage array that holds a copy of the table set in an ordered fashion
+-> use like bitmap (?) for selection sort
+-> the AI starts with first value & searches the rest of the set for its
+match by bool testing if the value is the match value
+-> if the match match isn't found, that (table value) can be removed from
+the set (although this might be a problem when adding new elements in
+-> (cont.) so probably jsut do the selection sort of moving up the index
+-> the objective being to exclude the first checked value from subsequent
+checks because also know it doesn't have a matching pair
+-> can have early out bool check that if a valid move is found since don't
+need to establish valid pairing for set
+-> this is because can just check the first value of an input and match
+based on the second (switch statement), with a function written for each
+card value (thats 10 little functions)
+-> the (j, q, k) exception is handled handled seperately and only
+looked for if there is no other move found
+-> the exception is handled by (?) (set of OR statements (?)) (need to
+figure out most robust implementations
+-> so get best efficiency for (play purpose) in that the AI just looks
+for the presence of a valid move, and seperates that from the input validation
+-> (ie) theres no reason to make an establish input list for the table set
+specifically unless making the (AI player version (?))
+-> while the block of switch statements to functions might work, can't help
+but feel its totally not scalable; at the same time, if it exactly meets
+the system requirements, there isn't a need to scale it, and it suggests the
+right balance of (having to write out a whole bunch of code by hand) (vs
+overengineering a system to cover abstracts that don't matter)
+-> for general (does a move exists?) the switch implementation is definitely
+more efficient because its guarentee'd to run a maximum (table size) but
+has much better exit change
+
+
+----------------------------------------------------------|----------------------------------------------------------
+
+--> re(try): General System Description Requirements
+-> the total game set is 52 cards; four sets of values [1-10 + J, Q, K]
+-> the table set is exactly 9 cards, except while processing a move
+-> the table set cards are the only visable cards; the deck values are hidden
+-> valid pairings are two cards that add to exactly 11, and one exception
+-> the exception case is a unordered triad made of exactly one jack, one queen, one king
+-> the suit of cards in not relevant for the game and can be entirely ignored
+-> the game is over when there are no more legal pairs (or the triad case) on the table set
+-> if the deck and table set are empty when the game ends, it is a win, otherwise, it is a loss
+-> there is no draw condition; a game is either a win, or a loss
+-> when a valid pair or the valid triad are picked, they are removed from the table set
+-> selecting a valid pair or triad is the only way cards can be removed from the table set
+-> whenever cards are removed from the table set, and equal number are drawn from the deck
+and added to the table set
+-> the discard pile isn't used in any capacity
+-> there is no way moves can be undone
+-> the system is deterministic and based entirely on the card order after shuffling
+-> there is no means of interacting with the deck other than drawing cards to replace cards
+removed via picking a valid pair or triad
+
+--> System Requirements
+-> detect valid pairings when presented as input
+-> ignore invalid input & notify user that the input was invalid
+-> process move submissions as valid or invalid
+-> process valid moves by removing the input set from the table set
+-> replace removed elements from table set with elements from deck set
+-> process table state to determine if any legal moves exists
+-> on detection that no legal moves exists, determine whether the state is a win or loss
+-> notify the user when the game is won or lost
+-> a shuffle / restart action the user can select at any time to make a new game
+-> the only user input during a game is the section of cards from the table set
+-> display the values of the table set
+-> display the remaining number of cards in the deck
+
+----------------------------------------------------------|----------------------------------------------------------
+

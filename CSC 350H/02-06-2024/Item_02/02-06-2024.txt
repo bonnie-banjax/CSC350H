@@ -1,0 +1,84 @@
+// CSC 350H
+// 02-06-2024
+
+
+// C# programming sample / example project:
+
+//Dice Class
+
+//--------------------------------------------[]--------------------------------------------\\
+
+// Dice.cs
+
+using System;
+using system.Collections.Generic;
+using Systtem.Linq;
+using System.Text;
+
+Namespace DiceGame
+{
+
+	public class Dice
+	{
+	
+		int numSides;
+		int top;
+		
+		public int NumSides { get { return numSides; } }
+
+		public Dice( ) {
+			numSides = 6;
+			top = 1;
+		}
+		
+		public Dice( int numSides )
+		{
+			this.numSides = numSides;
+			top = 1;
+		}
+		
+		public void Roll()
+		{
+		Random random = new Random();
+		top = random.Next( numSides ) + 1;
+		}
+	
+	}
+}
+
+//--------------------------------------------[]--------------------------------------------\\
+
+// Program.cs
+
+
+using System;
+using system.Collections.Generic;
+using Systtem.Linq;
+using System.Text;
+
+
+namespace DiceGame
+{
+	internal class Program
+	{
+		static void main(string[] args)
+		{
+			Dice dice = new Dice();
+			dice.Roll();
+			Console.WriteLine("After Roll a Dice, I get " + dice.Top);
+		}
+	}
+}
+
+//--------------------------------------------[]--------------------------------------------\\
+
+
+
+// note: need 'new' keyword to instatiate object, otherwise (variable) 
+// is null pointer, which trying to do will crash program
+
+// note: may have missed something with the lab
+// Rank / Suit => enum
+// ace = 0 etc.
+
+// since converting from string to int isn't trivial

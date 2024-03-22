@@ -1,0 +1,106 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-15-2024\\LAB_of_day\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|LABBIT_03.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\02-15-2024\\lab_of_day\\agent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|LABBIT_03.csproj|solutionrelative:agent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|LABBIT_03.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\02-15-2024\\lab_of_day\\card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|LABBIT_03.csproj|solutionrelative:card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|LABBIT_03.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\02-15-2024\\lab_of_day\\aprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|LABBIT_03.csproj|solutionrelative:aprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|LABBIT_03.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\02-15-2024\\lab_of_day\\deck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|LABBIT_03.csproj|solutionrelative:deck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|LABBIT_03.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\02-15-2024\\lab_of_day\\prototyper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|LABBIT_03.csproj|solutionrelative:prototyper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Agent.cs",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-15-2024\\LAB_of_day\\Agent.cs",
+              "RelativeDocumentMoniker": "Agent.cs",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-15-2024\\LAB_of_day\\Agent.cs*",
+              "RelativeToolTip": "Agent.cs*",
+              "ViewState": "AQIAAGMAAAAAAAAAAAAUwJYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-15T19:14:04.067Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Card.cs",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-15-2024\\LAB_of_day\\Card.cs",
+              "RelativeDocumentMoniker": "Card.cs",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-15-2024\\LAB_of_day\\Card.cs",
+              "RelativeToolTip": "Card.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAACwAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-15T19:06:19.069Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AProgram.cs",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-15-2024\\LAB_of_day\\AProgram.cs",
+              "RelativeDocumentMoniker": "AProgram.cs",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-15-2024\\LAB_of_day\\AProgram.cs",
+              "RelativeToolTip": "AProgram.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-15T18:54:21.564Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Prototyper.cs",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-15-2024\\LAB_of_day\\Prototyper.cs",
+              "RelativeDocumentMoniker": "Prototyper.cs",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-15-2024\\LAB_of_day\\Prototyper.cs",
+              "RelativeToolTip": "Prototyper.cs",
+              "ViewState": "AQIAAIMAAAAAAAAAAAAswIMAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-15T18:54:21.537Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Deck.cs",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-15-2024\\LAB_of_day\\Deck.cs",
+              "RelativeDocumentMoniker": "Deck.cs",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-15-2024\\LAB_of_day\\Deck.cs",
+              "RelativeToolTip": "Deck.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-15T19:14:30.534Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

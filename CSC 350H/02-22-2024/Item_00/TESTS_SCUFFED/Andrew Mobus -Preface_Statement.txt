@@ -1,0 +1,27 @@
+ANDREW MOBUS
+02-22-2024
+
+See also Preface on test files
+
+I apologize for both the lateness of the assignment and it's disarray;
+I'm trying to deal with the transfer process for the fall and some unknown
+hold ups in the process. My implementation of the assignment is not particular
+in the the spirit of TTD; I adjusted a bunch of the base code in ways I would
+not do were it production release (like changing whether something was public
+or private). This is due in part because my code doesn't seem to be in the 
+state were I left it; I've been trying to refactor & generalize the code in
+a seperate project (you may see traces of that from before I seperated them,
+such as "player" being called "Agent") and I may have inadvertently wrecked
+or otherwise scrambled code I didn't mean to in the process. I recognize the
+approach isn't tenable, and will fully address it before the console project
+of "Elevens" is due. A result of this will be that some of the naming
+conventions for that project, and its internal code, will differ quite a lot
+from the code presented here, as will any associated tests & respective code
+
+// [PREFACE]:
+// while these tests meet the word of the assignment, they are not not in the spirit
+// I had to fiddle with a lot of the base code, which was already not in the state
+// I thought I left it after finishing the initial test lab; I'm currently working
+// to overhaul & refactor all the classes to be more robust going forward, ie
+// for use in the upcoming Elevens assignment
+

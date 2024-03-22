@@ -1,0 +1,165 @@
+ANDREW MOBUS
+
+CSC 350H
+
+//-----------|-----------\\--|--//-----------|-----------\\|//-----------|-----------\\--|--//-----------|-----------\\
+
+--> Peer Review Assignment
+-> due (this friday?) is a peer review of Elevens Project
+
+-> how to store fishes in game (?)
+
+--> Prefabs
+-> ship
+-> fish
+
+
+--> Add a ship class to handle
+-> Active the ship
+-> Collect a Fish
+-> Get the next fish
+
+--> add a new class FishCollector to handle
+-> add a new fish
+-> get the next fish reference
+-> remove the collected fish
+
+-> Note: when right click, spawns a fish
+-> the ship then goes & collects that fish
+
+Note: Frame: get position of fish object
+-> if no change, abort rest of process
+-> if not, get vector of (fish pos - ship pos)
+-> add force in direction of fish position (whatever magnitude)
+-> note: cache trajectory target for ship
+-> ship moves when left click is pressed
+
+
+its a movement queue (approx.)
+
+--> Sample Code
+
+Instantiate<GameObject>(prefab)
+
+GameObject fish Instantiate<GameObject>(prefabPickup)
+fish.transform.position = worldPosition;
+
+//add fish to the fish list
+List<GameObject> fishList = new List<GameObject>();
+
+--> Activate the ship: OnMouseDown
+-> this event is sent to all scripots of the GameObject with Collider
+-> this (event?) is specifically coded for triggering when the mouse down
+is (on top of a collider)
+
+void OnTriggerStay2D(Collider2D other)
+
+-> flag: is Trigger - means no collision resolution
+
+Camera.main.GetComponent<FishCollector>();
+
+
+(from slide)
+
+Vector3 mousePosition = Input.mousePosition;
+MousePosition.z = -Camera.main.transform.position.z;
+Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+
+
+//-----------|-----------\\--|--//-----------|-----------\\|//-----------|-----------\\--|--//-----------|-----------\\
+
+
+--> class : FishCollector
+
+Data LinkedList<GameObject<FishPrefab>> FishList;
+
+Method SpawnFish(Vector3 Position)
+{
+	GameObject.Instantiate(Fish) at Position;
+	FishList.AddLast(Fish)
+}
+
+
+Method Receive MouseInput(OnMouseDown.Event)
+{
+	Vector3 FishPos = (OnMouseDown.x, OnMouseDown.y, 0);
+	SpawnFish(FishPos)
+}
+
+
+Method GiveNextFishPosition(GameObjectReference theShip)
+{
+	theShip.NextTargetFish(FishList.First().Position)
+	// option: let the ship handle it
+	// FishList.RemoveFirst();
+}
+
+
+// Alternative
+Method GameObject<FishPrefab> ProvideFishReference()
+{
+	return (FishList.First())
+}
+
+Method FishCaught()
+{ 
+	if (FishList.First() == null)
+		FishList.RemoveFirst();
+}
+
+//-----------|-----------\\--|--//-----------|-----------\\
+
+--> class : Ship
+
+Data Vector3 ShipPosition;
+Data GameObject<FishPrefab> TargetFish; // if ship is given refernce to the fish object
+Data GameObject<FishCollector> FishDispenser_Reference;
+Data Bool AvastFlag;
+
+
+Method AvastToggle(OnMouseDownLeft event)
+{
+	AvastFlag ^= AvastFlag
+}
+
+Method SailToPosition(Vector3 TargetPoition)
+{
+	ShipPosition = this.GameObject.Position;
+	
+	Vector3 SailDirection = TargetPosition - ShipPosition;
+	this.GameObject.ApplyForce(
+}
+
+Method return Vector3 FindTargetFish(FishPrefab TargetFish)
+{
+	return TargetFish.position;
+}
+
+Method GameObject<FishPrefab> AcquireFishRefernce(GameObject<FishCollector> FishDispenser_Reference)
+{
+	return FishDispenser_Reference.ProvideFishRefence();
+	
+}
+
+Method CatchFish() // on collision event
+{ 
+	AvastFlag = false;
+	Destroy(TargetFish)
+	FishDispenser_refernce.FishCaught();
+	FishDepsensor.ProvideFishReference();
+}
+
+void Update()
+{
+	if (!AvastFlag)
+	{ return; }
+	
+	if (TargetFish == null)
+	{ TargetFish = AcquireFishReference}
+	
+	SailToPosition(TargetFish.Position);
+
+}
+
+
+//-----------|-----------\\--|--//-----------|-----------\\|//-----------|-----------\\--|--//-----------|-----------\\

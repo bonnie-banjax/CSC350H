@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "ROUGH_ELEVENS/1.0.0": {
+        "runtime": {
+          "ROUGH_ELEVENS.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ROUGH_ELEVENS/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

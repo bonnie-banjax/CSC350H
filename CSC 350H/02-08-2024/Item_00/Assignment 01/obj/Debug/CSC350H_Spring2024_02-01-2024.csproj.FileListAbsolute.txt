@@ -1,0 +1,9 @@
+C:\Users\andrew.mobus001\source\repos\CSC350H_Spring2024_02-01-2024\bin\Debug\CSC350H_Spring2024_02-01-2024.exe.config
+C:\Users\andrew.mobus001\source\repos\CSC350H_Spring2024_02-01-2024\bin\Debug\CSC350H_Spring2024_02-01-2024.exe
+C:\Users\andrew.mobus001\source\repos\CSC350H_Spring2024_02-01-2024\bin\Debug\CSC350H_Spring2024_02-01-2024.pdb
+C:\Users\andrew.mobus001\source\repos\CSC350H_Spring2024_02-01-2024\bin\Debug\ConsoleCards.dll
+C:\Users\andrew.mobus001\source\repos\CSC350H_Spring2024_02-01-2024\obj\Debug\CSC350H_Spring2024_02-01-2024.csproj.AssemblyReference.cache
+C:\Users\andrew.mobus001\source\repos\CSC350H_Spring2024_02-01-2024\obj\Debug\CSC350H_Spring2024_02-01-2024.csproj.CoreCompileInputs.cache
+C:\Users\andrew.mobus001\source\repos\CSC350H_Spring2024_02-01-2024\obj\Debug\CSC350H_Spring2024_02-01-2024.csproj.CopyComplete
+C:\Users\andrew.mobus001\source\repos\CSC350H_Spring2024_02-01-2024\obj\Debug\CSC350H_Spring2024_02-01-2024.exe
+C:\Users\andrew.mobus001\source\repos\CSC350H_Spring2024_02-01-2024\obj\Debug\CSC350H_Spring2024_02-01-2024.pdb

@@ -1,0 +1,14 @@
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\02-15-2024\LAB_of_day\bin\Debug\net8.0\LABBIT_03.exe
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\02-15-2024\LAB_of_day\bin\Debug\net8.0\LABBIT_03.deps.json
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\02-15-2024\LAB_of_day\bin\Debug\net8.0\LABBIT_03.runtimeconfig.json
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\02-15-2024\LAB_of_day\bin\Debug\net8.0\LABBIT_03.dll
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\02-15-2024\LAB_of_day\bin\Debug\net8.0\LABBIT_03.pdb
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\02-15-2024\LAB_of_day\obj\Debug\net8.0\LABBIT_03.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\02-15-2024\LAB_of_day\obj\Debug\net8.0\LABBIT_03.AssemblyInfoInputs.cache
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\02-15-2024\LAB_of_day\obj\Debug\net8.0\LABBIT_03.AssemblyInfo.cs
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\02-15-2024\LAB_of_day\obj\Debug\net8.0\LABBIT_03.csproj.CoreCompileInputs.cache
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\02-15-2024\LAB_of_day\obj\Debug\net8.0\LABBIT_03.dll
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\02-15-2024\LAB_of_day\obj\Debug\net8.0\refint\LABBIT_03.dll
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\02-15-2024\LAB_of_day\obj\Debug\net8.0\LABBIT_03.pdb
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\02-15-2024\LAB_of_day\obj\Debug\net8.0\LABBIT_03.genruntimeconfig.cache
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\02-15-2024\LAB_of_day\obj\Debug\net8.0\ref\LABBIT_03.dll

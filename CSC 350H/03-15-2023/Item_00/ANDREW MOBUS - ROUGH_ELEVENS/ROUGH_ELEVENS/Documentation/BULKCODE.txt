@@ -1,0 +1,1596 @@
+﻿
+// CONSOLODATED MASS CODE FILE
+
+// if copied & pasted into  a .cs file, should be able to click compile & run
+// the tests are commented out at the bottom; that would need to be taken out of
+// file and set up in its own testing framework item
+
+//---
+
+using ROUGH_ELEVENS;
+
+namespace ROUGH_ELEVENS
+{
+    public class CORE
+    {
+        static void Main(string[] args)
+        {
+            HOUSE theHouse = new();
+            theHouse.DaRules.Elevens();
+
+            Console.Write("Enter option (AUTO, MANUAL): ");
+            string opt = Console.ReadLine();
+            bool exitCon = false;
+            switch (opt)
+            {
+                case "AUTO":
+                    for (int i = 0; exitCon != true && i < 10000; i++)
+                    {
+                        theHouse.PlayLoop(theHouse.DaRules, "AUTO");
+                        if (theHouse.Audit.Last.action == "[V]")
+                            exitCon = true;
+                    }
+                    break;
+                case "MANUAL":
+                    for (int i = 0; exitCon != true && i < 10000; i++)
+                    {
+                        theHouse.PlayLoop(theHouse.DaRules, "MANUAL");
+                        Console.WriteLine("Enter EXIT to end program.");
+                        Console.WriteLine("Otherwise, continue.");
+                        string choice = Console.ReadLine();
+                        if (choice == "EXIT")
+                            exitCon = true;
+                    }
+                    break;
+            } // END_SWITCH
+        } // END_MAIN
+    }
+}
+
+
+
+//---
+
+//HOUSE
+namespace ROUGH_ELEVENS
+{
+    public class HOUSE
+    {
+        //-----------------------------------------------------------|-----------------------------------------------------------
+
+        public Agent TableSet;
+        public Deck houseDeck;
+        public Validator validChecker; // (*1)
+        public bool GameEnd;
+
+        public RULESET DaRules = new();
+        public Dictionary<string, RULESET> RuleSets; // IDictionary, HybridDictionary, OrderedDictionary?
+        public LOGGER Audit = new();
+
+
+        // (*1) this instance isn't strictly needed at the moment; the implementation of Validator was as a static class until
+        // concurrent to the writing of this comment. The class was changed in order to allow House to have its own instance of
+        // Validator to make clear the component relationship, and (eventually) better prepare for more complete encapsulation
+
+        //-----------------------------------------------------------|-----------------------------------------------------------
+
+        public HOUSE()
+        {
+
+        }
+        void tableSettings(int size) // for here, 9
+        {
+
+            TableSet = new("TABLE", size);
+            houseDeck = new();
+            TableSet.assignDeck(houseDeck);
+            for (int i = 0; i < TableSet.MaxCards; i++)
+                TableSet.addCard(houseDeck.Draw());
+        }
+
+        //-----------------------------------------------------------|-----------------------------------------------------------
+
+        // could pass in (table.getHand) just as list parameter
+        // & rest works & could therefore put in Validator (not quite)
+        // probably an Agent method
+        public int[] hand_to_array(Agent table) // (List<Object> hand, Type obtype) ? (not quite)
+        {
+            if (table.HandSize == 0)
+                return null;
+
+            List<Card> checkset = table.GetHand;
+            List<int> checklist = new();
+            foreach (var card in checkset)
+                checklist.Add((int)card.Rank);
+            int[] TableArray = checklist.ToArray();
+
+            return TableArray;
+        }
+
+        public bool validMoveExists(Agent table, int checkCon, (int a, int b, int c) extraCon) // for here, 11
+        {
+            if (table.HandSize == 0)
+                return false;
+
+            int[] exraCon = [extraCon.a, extraCon.b, extraCon.c];
+            (int a, int b, int c) xtraCon = (exraCon[0], exraCon[1], exraCon[2]);
+
+            return Validator.valid_move_exists(table.hand_to_array(), checkCon, extraCon); //validate_set_02(TableArray, checkCon);
+        }
+
+
+        //-----------------------------------------------------------|-----------------------------------------------------------
+
+        public void PlayLoop(RULESET rules, string mode = "AUTO")
+        {
+            Console.WriteLine("[----------------------------------------------|----------------------------------------------]");
+
+            if (rules.rule.Count == 0)
+            { Console.WriteLine("[ERROR]: RULESET UNSPECIFIED"); return; }
+
+
+            // setup data (*1)
+            int cached_01 = (int)rules.rule["tableHandSize"];
+            int cached_02 = (int)rules.rule["pairCheck"];
+            int cached_03 = (int)rules.rule["triadCheck"];
+            (int, int, int) cached_04 = ((int, int, int))rules.rule["triadTuple"];
+            int[] cached_05 = (int[])rules.rule["triadCheckArray"];
+
+
+            // (*1) the names of these variable bely their purpose; they are cached for performance,
+            // and clarity in that these are the values required here, outlined in type.
+            // by passing a rule struct that contains the dictionary parings, it allows those values
+            // to be more easily changed without breaking changes, and leaves a clear path for
+            // (abstraction / code reuse) in that this play loop matches to a ruleset with these
+            // value signatures, allowing the ruleset struct to be more flexible (bad explanation)
+
+            tableSettings(cached_01);
+
+            int turnCounter = 0; // could this be hanled by a genereal / generic counter function ?
+            GameEnd = false; // trade off of global vs local game end variable
+                           // end setup data
+
+
+
+            do
+            {
+                Console.Write("[" + (turnCounter++) + "]");
+                GameOver = !validMoveExists(TableSet, cached_02, cached_04);
+
+                switch (mode)
+                {
+                    case "AUTO":
+                        AutoMove(cached_02, cached_03, cached_05);
+                        break;
+                    case "MANUAL":
+                        ManualMove(cached_02, cached_03, cached_05);
+                        break;
+                    default:
+                        break;
+                } // END_SWITCH
+            } while (GameEnd != true);
+
+            EvaluateGameState();
+
+            Console.WriteLine("[----------------------------------------------|----------------------------------------------]");
+        }
+
+        // this function is still in development; the idea is to use the State struct
+        // pattern to define the end conditions, as a means of extensibility
+        // but right now this is a glorified boolean check with some feature sprinkles.
+        public void EvaluateGameState()
+        {
+
+            LinkedList<object> seed_01 = new();
+            LinkedList<object> seed_02 = new();
+
+            seed_01.AddLast(TableSet.HandSize); // for EndState
+            seed_02.AddLast(0); // For WinCon (will be part of RuleSet data)
+
+            bool outcome;
+            State EndState = new(seed_01); // this is outcome
+            State WinCon = new(seed_02); // state object defining what victory looks like
+
+
+            if (EndState == WinCon)
+            { outcome = true; }
+            else { outcome = false; }
+
+            if (outcome == true)
+                Audit.AddLog("[V]");
+            else { Audit.AddLog("[F]"); }
+
+            if (TableSet.HandSize != 0)
+            { Console.WriteLine("Failure"); }
+            else
+            { Console.WriteLine("Victory"); }
+        }
+
+        //-----------------------------------------------------------|-----------------------------------------------------------
+        public void ManualMove(int localPair, int localTriad, int[] triadArray)
+        {
+            TableSet.ShowCards_concise();
+            Console.Write("Enter option (PAIR, TRIAD, AUTO, EXIT): ");
+            string opt = Console.ReadLine();
+
+            switch (opt)
+            {
+                case "PAIR":
+                    Console.Write("Enter (pair): ");
+
+                    Console.Write("Enter (1): ");
+                    int a = int.Parse(Console.ReadLine());
+                    Console.Write("Enter (2): ");
+                    int b = int.Parse(Console.ReadLine());
+
+                    processMove(a, b, localPair);
+                    break;
+                case "TRIAD":
+                    Console.Write("Enter (triad): ");
+
+                    Console.Write("Enter (1): ");
+                    int c = int.Parse(Console.ReadLine());
+                    Console.Write("Enter (2): ");
+                    int d = int.Parse(Console.ReadLine());
+                    Console.Write("Enter (3): ");
+                    int e = int.Parse(Console.ReadLine());
+
+                    processMove(c, d, e, localTriad);
+                    break;
+                case "AUTO":
+                    AutoMove(localPair, localTriad, triadArray);
+                    break;
+                case "EXIT":
+                    GameEnd = true;
+                    break;
+                default:
+                    break;
+            }
+
+        } // END_FUNC
+
+        private void AutoMove(int localPair, int localTriad, int[] triadArray)
+        {
+
+            (int, int, int) triadTuple = (triadArray[0], triadArray[1], triadArray[2]); // refactor into array form & pass as parameter
+            int[] pair_indexes = Validator.find_pair_index(TableSet.hand_to_array(), localPair);
+            int[] triad_indexes = Validator.find_triad_index(TableSet.hand_to_array(), triadTuple);
+
+            // game end refactor required
+            if (((pair_indexes[0] >= 0) || (triad_indexes[0] >= 0)) == false)
+                GameEnd = true;
+
+            // these can be refactored, at least in their bool conditions
+            if (pair_indexes[0] >= 0)
+            {
+                autoprocessMove(pair_indexes);
+                Console.WriteLine("Indexes: " + pair_indexes[0] + " " + pair_indexes[1]);
+            }
+            if (pair_indexes[0] < 0 && triad_indexes[0] >= 0) // could be else if instead of if
+            {
+                autoprocessMove(triad_indexes);
+                Console.WriteLine("Indexes: " + triad_indexes[0] + " " + triad_indexes[1] + " " + triad_indexes[2]);
+            }
+        } // END_FUNC
+
+        //-----------------------------------------------------------|-----------------------------------------------------------
+
+        public void processMove(int nDex_01, int nDex_02, int checkCon)
+        {
+            if (nDex_01 == nDex_02)
+                return;
+
+            Card C1 = TableSet.getCard(nDex_01);
+            Card C2 = TableSet.getCard(nDex_02);
+            bool isValid = Validator.validate_set([(int)C1.Rank, (int)C2.Rank], checkCon);
+
+            int[] n = [nDex_01, nDex_02];
+            int[] tempDex = sortMaxMin(ref n);
+
+            if (isValid == true && houseDeck.CardCount != 0) // doesn't track table discard
+            {
+                TableSet.addCard(houseDeck.Draw(), nDex_01);
+                TableSet.addCard(houseDeck.Draw(), nDex_02);
+            }
+            else if (isValid == true && houseDeck.CardCount == 0)
+            {
+                foreach (int i in tempDex)
+                    TableSet.removeCard(i);
+            }
+            else
+                Console.WriteLine("Move is Invalid");
+        } // END_FUNC
+
+        public void processMove(int nDex_01, int nDex_02, int nDex_03, int checkCon)
+        {
+            // doesn't need the identical index check that pair does
+
+            Card C1 = TableSet.getCard(nDex_01);
+            Card C2 = TableSet.getCard(nDex_02);
+            Card C3 = TableSet.getCard(nDex_03);
+            bool isValid = Validator.validate_set([(int)C1.Rank, (int)C2.Rank, (int)C3.Rank], checkCon);
+
+            int[] n = [nDex_01, nDex_02, nDex_03];
+            int[] tempDex = sortMaxMin(ref n);
+
+            if (isValid == true && houseDeck.CardCount != 0)
+                foreach (int index in tempDex)
+                    TableSet.addCard(houseDeck.Draw(), index);
+            else if (isValid == true && houseDeck.CardCount == 0)
+                foreach (int index in tempDex)
+                    TableSet.removeCard(index);
+            else { Console.WriteLine("Move is Invalid"); }
+
+        } // END_FUNC
+
+        // relies on receiving an array with [-1] as means of validating
+        // good example on trade-off between performance & security
+        public void autoprocessMove(int[] nDexes)
+        {
+            if (nDexes[0] == (-1))
+                return; // Console.WriteLine("INVALID ");
+
+            int[] descendOrder = sortMaxMin(ref nDexes);//
+            foreach (int i in nDexes)
+            {
+                if (houseDeck.CardCount != 0)
+                    TableSet.addCard(houseDeck.Draw(), (i)); //(nDexes[i])
+                else { TableSet.removeCard(i); } // (nDexes[i])
+            }
+
+            /*
+            // Still can't get this to work
+            int[] ascend = sortMinMax(ref nDexes);
+            int a = nDexes.Length - 1;
+            for (int i = a; i > 0; i--)
+            {
+                if (houseDeck.CardCount != 0)
+                    TableSet.addCard(houseDeck.Draw(), (ascend[i]));
+                else { TableSet.removeCard((ascend[i])); }
+            }
+            */
+
+
+
+
+
+
+        } // END_FUNC
+
+        //-----------------------------------------------------------|-----------------------------------------------------------
+
+
+        public int[] sortMinMax(ref int[] SortMe) // min
+        {
+            int[] arg = SortMe;
+
+            int n = arg.Length;
+
+            for (int i = 0; i < n - 1; i++)
+            {
+                int minIndex = i;
+                for (int j = i + 1; j < n; j++)
+                    if (arg[j] < arg[minIndex])
+                        minIndex = j;
+
+                int temp = arg[minIndex];
+                arg[minIndex] = arg[i];
+                arg[i] = temp;
+            }
+            SortMe = arg;
+            return SortMe;
+        }
+
+        public int[] sortMaxMin(ref int[] SortMe) // min
+        {
+            int[] arg = SortMe;
+
+            int n = arg.Length;
+
+            for (int i = 0; i < n - 1; i++)
+            {
+                int maxIndex = i;
+                for (int j = i + 1; j < n; j++)
+                    if (arg[j] > arg[maxIndex])
+                        maxIndex = j;
+
+                int temp = arg[maxIndex];
+                arg[maxIndex] = arg[i];
+                arg[i] = temp;
+            }
+            SortMe = arg;
+            return SortMe;
+        }
+
+        //-----------------------------------------------------------|-----------------------------------------------------------
+    } //HOUSE
+}
+
+//---
+
+//Validator
+namespace ROUGH_ELEVENS
+{
+
+    // this class was created to test whether could use switch statements to
+    // super-optimize the process but really the validation is so simple
+    // that the validate set function should be a method of the ruleset
+
+    // maybe change from static to (well, a singleton ?)
+    // lazy initalization (make a static variable so works like
+    // mCopy of Heque where the first caller constructs & then everyone
+    // else that should have these functions (and would call to make one)
+    // gets a reference to where the existing instance lives
+
+    // [03-07-2024] copied the code into a new Struct without
+    // all the documentation in order to keep things tidy
+    // just feels right having it be a struct since its really
+    // just a collection of methods, and having be a struct
+    // encourages composition over inheritence
+    // no real overhead since it doesn't have any data of
+    // its own so double check how that interacts with
+    // (static tag, in regards to methods and structs
+
+    // structs are also potentially more condusive to the command
+    // design pattern in that classes are (not sure how to describe)
+    // simultaniously more and less generalized; the gist is that
+    // everything the validator does is just a (static) function
+    // and while their (are only a few dependencies), between the 
+    // methods, they are overall pretty decoupled, and are entirely
+    // decopupled from the data that they process, but still make sense
+    // to group together in some regard, which a struct does perfectly
+
+    // difference between abstract & static (?)
+    // arguement for instancing in that it would allow (specific circumstance)
+    // but already does that with dependancy injection (?)
+    public class Validator //may return to static class
+    {
+        // -----------------------------------------------------------|-----------------------------------------------------------
+
+        // this is the abstracted version of initial validator; by using
+        // and array for the values, the same function can be used for
+        // for pairs (array size of 2, check == 11) & the triad
+        // (array size of 3, checkCon = 36)
+
+        static public bool validate_set(int[] vals, int check) // validate_sum (?)
+        {
+            int sum = 0;
+            foreach (int val in vals)
+                sum += val;
+
+            if (sum == check)
+                return true;
+            else
+                return false;
+        } // END_FUNC
+
+        // this set validator checks to see if any pair meets the criteria
+        // and exits its nested loops as soon as flag is set true
+
+        // -----------------------------------------------------------|-----------------------------------------------------------
+        // rename find_index_pair
+        static public int[] find_pair_index(int[] valArray, int checkCon)
+        {
+            if (valArray == null)
+                return [-1, -1];
+
+            for (int i = 0; (i < valArray.Length); i++)
+                for (int ii = 0; (ii < valArray.Length); ii++)
+                    if ((valArray[i] + valArray[ii] == checkCon) && (valArray[i] != valArray[ii]))
+                        return [i, ii];
+            return [-1, -1]; // really want to only return [-1]
+        }
+
+        // rename find_index_triad (could do three binary search calls (?))
+        static public int[] find_triad_index(int[] valArray, (int a, int b, int c) faces) // 11, 12, 13
+        {
+
+            if (valArray == null)
+                return [-1, -1, -1];
+
+            bool[] checks = [false, false, false];
+            int[] nDexes = [-1, -1, -1];
+            for (int i = 0; i < (valArray.Length); i++)
+            {
+                if (valArray[i] == faces.a)
+                {
+                    nDexes[0] = i;
+                    checks[0] = true;
+                }
+                if (valArray[i] == faces.b)
+                {
+                    nDexes[1] = i;
+                    checks[1] = true;
+                }
+                if (valArray[i] == faces.c)
+                {
+                    nDexes[2] = i;
+                    checks[2] = true;
+                }
+            } // END_FOR
+
+            if (checks[0] == true
+            && checks[1] == true
+            && checks[2] == true)
+                return nDexes;
+            else { return [-1, -1, -1]; }
+
+        }
+
+
+        // this doesn't properly return a releveant index
+        // fixed the index issue; this can search for the prsence of more
+        // than just triad, but rather, the total presence of an exception set
+        // ie can be represented as group of particular discrete values (?)
+        static public int[] find_indexi(int[] valArray, int[] faceArray) // 11, 12, 13
+        {
+            List<int> nDexes = valArray.ToList();
+
+            foreach (var value in faceArray)
+            {
+                nDexes.Add(SearAlgo(valArray, value));
+                if (nDexes.Last() == (-1))
+                    return [-1];
+            } // END_FOR
+
+            return nDexes.ToArray();
+        }
+
+        // currently linear search, since binary sort will only
+        // if whatever is drawing indexes from is already sorted
+        // and that may or may not be viable
+        static int SearAlgo(int[] arg, int look) // no reason to be public 
+        {
+            for (int i = 0; i < arg.Length; i++)
+                if (arg[i] == look)
+                    return i;
+            return -1;
+        }
+
+        // found (general, standard; not generic) binary search
+        public static object BinarySearchIterative(int[] inputArray, int key)
+        {
+            int min = 0;
+            int max = inputArray.Length - 1;
+            while (min <= max)
+            {
+                int mid = (min + max) / 2;
+                if (key == inputArray[mid])
+                {
+                    return ++mid;
+                }
+                else if (key < inputArray[mid])
+                {
+                    max = mid - 1;
+                }
+                else
+                {
+                    min = mid + 1;
+                }
+            }
+            return "Nil";
+        }
+
+        // not sure why took things had broken into seperate functions and brought back all toghether
+        // including the fact that it not long skips the triad check if it finds a pair condition, which
+        // was part of what make the method more sophisticated, but need to clear up old tangled methods
+        // and this one insures there is a single, function method for checking, given a valarray, if 
+        // any pair or triad moves exists (so more in functional programming side) (input & output solid)
+        public static bool valid_move_exists(int[] valArray, int checkCon, (int a, int b, int c) faces) // validate_sum (?)
+        {
+            //-----
+            bool flag_00; ;
+            bool flag_01 = false;
+            bool flag_02 = false;
+
+            //-----
+            // seperate back out into own function or use find_pair_index
+            // uses flag_01
+            for (int i = 0; i < (valArray.Length) && (flag_01 == false); i++)
+                for (int ii = 0; (ii < valArray.Length) && (flag_01 == false); ii++)
+                    if ((valArray[i] + valArray[ii] == checkCon) && (valArray[i] != valArray[ii]))
+                    { flag_01 = true; }
+
+            //-----
+            // seperate back out into own function or use refactor find_triad_index
+            // uses flag_02
+            bool[] checks = [false, false, false];
+            for (int i = 0; i < (valArray.Length); i++)
+            {
+                if (valArray[i] == faces.a)
+                    checks[0] = true;
+                if (valArray[i] == faces.b)
+                    checks[1] = true;
+                if (valArray[i] == faces.c)
+                    checks[2] = true;
+            } // END_FOR
+
+            if (checks[0] == true
+             && checks[1] == true
+             && checks[2] == true)
+                flag_02 = true;
+
+            //-----
+
+            if (flag_01 == true || flag_02 == true)
+            { flag_00 = true; }
+            else
+            { flag_00 = false; }
+
+            return flag_00;
+        } // END_FUNC
+
+        //-----------------------------------------------------------|-----------------------------------------------------------
+
+
+
+    } // end_class
+
+} //Validator
+
+/*
+ 
+    const int validCon = 11;
+    int pairCon = 11;
+    int triadCon = 36;
+
+    bool validate_00((int a, int b) val, int check)
+    {
+
+        switch (val.a+val.b)
+        {
+            case validCon:
+                return true;
+            default:
+                return false;
+        } // end_switch
+    } // ED_FUNC
+
+    // these might be slower, but in this case that's trivial
+    bool validate_pair((int a, int b) val, int check)
+    {
+
+        if (val.a + val.b == check)
+            return true;
+        else
+            return false;
+    } // END_FUNC
+
+    bool validate_triad((int a, int b, int c) val, int check)
+    {
+
+        if (val.a + val.b + val.c == check)
+            return true;
+        else
+            return false;
+    } // END_FUNC
+
+ 
+ 
+ 
+ 
+ 
+ */
+
+/*
+for (int i = 0; i < (faceArray.Length) && flag == false; i++)
+{
+    nDexes[i] = SearAlgo(valArray, faces.a);
+    if (nDexes[i] == (-1))
+        flag = true;
+} // END_FOR
+
+nDexes[0] = SearAlgo(valArray, faces.a);
+if (nDexes[0] == (-1))
+    return nDexes; // early escape because no triad
+
+nDexes[1] = SearAlgo(valArray, faces.b);
+if (nDexes[1] == (-1))
+    return nDexes; // early escape because no triad
+
+nDexes[2] = SearAlgo(valArray, faces.c);
+if (nDexes[2] == (-1))
+    return nDexes; // early escape because no triad
+
+
+return nDexes;
+*/
+
+//---
+
+//STRUCTS (includes Logger)
+namespace ROUGH_ELEVENS
+{
+
+    public struct State
+    {
+        // [GIANT COMMENTARY BLOCK] given living documentation note
+
+        private Object[] state_cache;
+        public LinkedList<Object> active_state;
+        private Stack<LinkedList<Object>> dormant_states;
+
+
+        public void addField(object arg)
+        { active_state.AddLast(arg); }
+
+        public void Cache() { state_cache = active_state.ToArray(); }
+
+        public object[] Status()
+        {
+            if (state_cache != null)
+                return state_cache;
+            else { Cache(); return state_cache; }
+
+        } // return dormant_states.Peek().ToArray();
+
+        public LinkedList<object> Check()
+        { return dormant_states.Peek(); }
+
+
+        public State() { active_state = new(); dormant_states = new(); }
+        public State(LinkedList<object>? seed)
+        {
+            dormant_states = new();
+            if (seed != null)
+            {
+                active_state = seed;
+                dormant_states.Push(active_state);
+            }
+            else { active_state = new(); }
+        } // END_CONSTRUCTOR
+
+
+        public void Dorm() { dormant_states.Push(active_state); }
+        public void Wake() { active_state = dormant_states.Pop(); }
+        public void Dust() { state_cache = []; }
+        public void Sweep() { active_state.Clear(); }
+        public void Scrub() { dormant_states.Clear(); }
+
+        public void Clean() { Dust(); Sweep(); Scrub(); }
+
+
+        public string Signature()
+        {
+            string ID = "[::]";
+
+            foreach (var item in active_state)
+            { ID += " | " + item.GetHashCode().ToString() + " | "; }
+
+            return ID + "[::]";
+        }
+        public string Dump()
+        {
+            if (dormant_states.Count == 0)
+                return "[::{::}::][::{::}::]";
+
+            string ID = "\n[::{::}::]";
+
+            do
+            {
+                Wake();
+                ID += "\n[::]";
+                foreach (var item in active_state)
+                    ID += "| " + item.GetHashCode().ToString() + " |";
+                ID += "[::]";
+            }
+            while (dormant_states.Count != 0);
+
+
+            return ID + "\n[::{::}::]";
+        }
+
+        public static bool operator ==(State a, State b)
+        {
+            List<object> aVal = a.active_state.ToList();
+            List<object> bVal = b.active_state.ToList();
+
+            if (a.active_state.Count() != b.active_state.Count)
+                return false;
+
+            for (int i = 0; i < aVal.Count; i++)
+                if (aVal[i].GetHashCode() != bVal[i].GetHashCode())
+                    return false;
+
+            return true;
+        } // END_OPERATOR
+
+        public static bool operator !=(State a, State b)
+        {
+            List<object> aVal = a.active_state.ToList();
+            List<object> bVal = b.active_state.ToList();
+
+            if (a.active_state.Count() != b.active_state.Count)
+                return true;
+
+            for (int i = 0; i < aVal.Count; i++)
+                if (aVal[i].GetHashCode() != bVal[i].GetHashCode())
+                    return true;
+
+            return false;
+        } // END_OPERATOR
+
+        public static State operator +(State a, Object b)
+        {
+            a.addField(b);
+            return a;
+        }
+
+        public static State operator --(State a)
+        {
+            a.active_state.RemoveLast();
+            return a;
+        }
+
+    } //END_STRUCT
+
+    public struct LOGGER
+    {
+        private string loggerID;
+        private int logCount;
+        private SortedDictionary<int, LOG> logs;
+
+        public string ID { get { return loggerID; } }
+        public int LogCount { get { return logCount; } }
+        public LOG GetLog(int i) { return logs[i]; }
+        public LOG Last { get { return logs[LogCount]; } }
+        public SortedDictionary<int, LOG> LogDump()
+        { return logs; }
+
+        public LOGGER()
+        {
+            logs = new();
+            loggerID = this.GetHashCode().ToString();
+            logCount = 0;
+            logs[0] = MakeLog(this);
+
+        } // END_CONSTRUCTOR
+
+        public struct LOG(string logger, string actionID, Object action)
+        {
+            public string loggerID = logger;
+            public string actionID = actionID;
+            public Object action = action; // a weak pointer in the future (?)
+
+        } // END_STRUCT
+
+        public void AddLog(object target)
+        { logs.Add(++logCount, MakeLog(target)); }
+
+        private LOG MakeLog(object obj)
+        { return new(ID, obj.GetHashCode().ToString(), obj); }
+
+
+
+    } // END_STRUCT
+
+    public struct RULESET
+    {
+        public Dictionary<string, object> rule;
+
+        public RULESET()
+        { rule = new(); } // END_CONSTRUCTOR
+
+        public RULESET(Dictionary<string, object> seed)
+        { rule = seed; } // END_CONSTRUCTOR
+
+        public void dictInit(Dictionary<string, object> seed)
+        { rule = seed; } // END_CONSTRUCTOR
+
+        public void Elevens()
+        {
+            rule.Clear();
+
+            rule["rulesID"] = (string)"[ELEVENS]";
+            rule["tableHandSize"] = (int)9;
+
+            rule["pairCheck"] = (int)11;
+            rule["triadCheck"] = (int)36;
+            rule["triadTuple"] = ((int)11, (int)12, (int)13);
+            rule["triadCheckArray"] = new int[] { 11, 12, 13 };
+
+            rule["VictoryState"] = new State();
+            rule["FailureState"] = new State();
+        }
+
+        public void Elevens_52()
+        {
+            rule.Clear();
+
+            rule["rulesID"] = (string)"[ELEVENS]";
+            rule["tableHandSize"] = (int)52;
+
+            rule["pairCheck"] = (int)11;
+            rule["triadCheck"] = (int)36;
+            rule["triadTuple"] = ((int)11, (int)12, (int)13);
+            rule["triadCheckArray"] = new int[] { 11, 12, 13 };
+
+            rule["VictoryState"] = new State();
+            rule["FailureState"] = new State();
+        }
+
+        public void Elevens_02()
+        {
+            rule.Clear();
+
+            rule["rulesID"] = (string)"[ELEVENS]";
+            rule["tableHandSize"] = (int)2;
+
+            rule["pairCheck"] = (int)11;
+            rule["triadCheck"] = (int)36;
+            rule["triadTuple"] = ((int)11, (int)12, (int)13);
+            rule["triadCheckArray"] = new int[] { 11, 12, 13 };
+
+            rule["VictoryState"] = new State();
+            rule["FailureState"] = new State();
+        }
+
+
+
+    } // END STRUCT
+
+    public struct ELEVENS // const version ? figure out how do
+    {
+        public string rulesID; // = "[ELEVENS]"
+        public int tableHandSize; // = 9
+
+        public int pairCheck; // = 11
+        public int triadCheck; // = 36
+        public (int a, int b, int c) triadTuple; // = (11, 12, 13)
+        public int[] triadCheckArray; // = [11, 12, 13]
+
+        State VictoryState; // validMoveExists == false && tableHandCount == 0
+        State FailureState; // validMoveExists == false && tableHandCount != 0
+
+        public int deckSize;// = 52
+        public int tokenFieldsCount; // = 2
+        public (int, int) tokenEnumRanges; // (4, 13) (rank, suit) // this doesn't work right
+        public int[,] tokenRanges;
+
+        public ELEVENS(string code)
+        {
+            rulesID = "[ELEVENS]";
+            tableHandSize = 9;
+
+            pairCheck = 11; // 10
+            triadCheck = 36;
+            triadTuple = (11, 12, 13);
+            triadCheckArray = new int[] { 11, 12, 13 }; // [11, 12, 13];
+
+            VictoryState = new();
+            FailureState = new();
+
+            deckSize = 52;
+            tokenFieldsCount = 2;
+            tokenEnumRanges = (4, 13);
+            tokenRanges = new int[4, 13]; // issue of conversion to the actual enums
+        } // END_CONSTRUCTOR
+    }
+
+} //STRUCTS (includes Logger)
+
+//---
+
+//DECK
+namespace ROUGH_ELEVENS
+{
+    public class Deck
+    {
+        List<Card> cards = new();
+        LinkedList<Card> discards = new();
+        static Dictionary<int, Card> mCopy = new();
+        static Random randi = new();
+
+        public int CardCount { get { return cards.Count; } }
+
+        // -----------------------------------------------------------|-----------------------------------------------------------
+
+        public Deck()
+        {
+            if (mCopy.Count() == 0)
+                master_deck();
+            deck_list();
+
+        } // END_FUNC
+
+        // -----------------------------------------------------------|-----------------------------------------------------------
+
+        public void deck_list()
+        {
+            cards.Clear();
+            discards.Clear();
+
+            int[] buffer = PrepShuffle(mCopy.Count);
+            int II = mCopy.Count - 1;
+            for (int i = II; i >= 0; i--) // still kinda of scuffed
+                cards.Add(mCopy[buffer[i]]);
+        } // END_FUNC
+
+        private static void master_deck() // public 
+        {
+            int index = 0;
+
+            foreach (Suit suit in Enum.GetValues(typeof(Suit)))
+                foreach (Rank rank in Enum.GetValues(typeof(Rank)))
+                {
+                    if ((suit != Suit.NULL) && (rank != Rank.NULL))
+                        mCopy.Add(index++, new Card(suit, rank));
+                }
+        } // END_FUNC
+
+        // -----------------------------------------------------------|-----------------------------------------------------------
+
+        public void Cut(int cutPoint)
+        {
+            List<Card> tempList = new();
+
+            for (int i = 0; i < cutPoint; i++)
+            {
+                tempList.Add(cards[i]);
+            }
+            cards.RemoveRange(0, cutPoint);
+            cards.InsertRange(cards.Count, tempList);
+
+        }
+
+        // -----------------------------------------------------------|-----------------------------------------------------------
+
+        public void Shuffle()
+        {
+            int[] buffer = PrepShuffle(mCopy.Count);
+            cards.Clear();
+            for (int i = mCopy.Count; i > 0; i--)
+                cards.Add(mCopy[buffer[i]]);
+        }
+
+        public static int[] PrepShuffle(int theDeckSize)
+        {
+            int deckSize = theDeckSize; //mCopy.Count();
+            int[] tempArray = new int[deckSize];
+
+
+            for (int i = 0; i < deckSize; i++)
+                tempArray[i] = i;
+
+            for (int i = deckSize - 1; i > 0; i--)
+                Swap(ref tempArray[i], ref tempArray[randi.Next(i)]);
+
+            return tempArray;
+        }
+
+        // this is scuffed
+        public void unshuffled_deck()
+        {
+            cards.Clear();
+            discards.Clear();
+
+            int[] buffer = new int[mCopy.Count];
+            for (int i = 0; i < mCopy.Count; i++)
+                buffer[i] = i;
+
+            int II = mCopy.Count - 1;
+            for (int i = II; i >= 0; i--) // still kinda of scuffed
+                cards.Add(mCopy[buffer[i]]);
+        }
+
+        // -----------------------------------------------------------|-----------------------------------------------------------
+        public Card Draw()
+        {
+            Card topCard = null;
+
+            if (cards.Count == 0)
+                Console.WriteLine("Draw failed; Deck is empty");
+            else
+            {
+                topCard = cards[0];
+                discards.AddLast(cards[0]);
+                cards.RemoveAt(0);
+            }
+            return topCard;
+        }
+        // -----------------------------------------------------------|-----------------------------------------------------------
+        static void Swap(ref int a, ref int b)
+        {
+            int temp;
+            temp = a;
+            a = b;
+            b = temp;
+        }
+        // -----------------------------------------------------------|-----------------------------------------------------------
+
+        public static void Show(List<Card> arr, int lineLen = 10)
+        {
+            int n = arr.Count();
+            for (int i = 0; i < n; ++i)
+            {
+                if (arr[i].Hidden == true)
+                    arr[i].Flip();
+                Console.WriteLine(arr[i].Rank + " of " + arr[i].Suit);
+                Console.Write(arr[i] + " ");
+                if (i % lineLen == 0)
+                    Console.WriteLine('\n');
+            }
+            Console.WriteLine();
+        }
+        public void Show(int lineLen = 10)
+        {
+            List<Card> arr = cards; // ineffecient copying, go back & just change arr to cards
+
+            int n = arr.Count();
+            int entries_per_line = 0;
+            for (int i = 0; i < n; ++i)
+            {
+                if (arr[i].Hidden == true)
+                    arr[i].Flip();
+                Console.WriteLine(arr[i].Rank + " of " + arr[i].Suit);
+                //Console.Write(arr[i] + " ");
+                if (i % lineLen == 0)
+                    Console.WriteLine('\n');
+            }
+            Console.WriteLine();
+        }
+
+        // -----------------------------------------------------------|-----------------------------------------------------------
+    }
+} //DECK
+
+
+//---
+
+//AGENT
+namespace ROUGH_ELEVENS
+{
+    public class Agent
+    {
+        //-----------------------------------------------------------|-----------------------------------------------------------
+        string id; // string used for AgentID
+        int maxCards;
+
+        private List<Card> hand = new();
+        Deck myDeck; // reference to a deck, originally a pointer
+
+        public string ID { get { return id; } set { id = value; } }
+        public int MaxCards { get { return maxCards; } set { maxCards = value; } }
+        public int HandSize { get { return hand.Count; } }
+        //-----------------------------------------------------------|-----------------------------------------------------------
+        public List<Card> GetHand { get { return hand; } }
+        //-----------------------------------------------------------|-----------------------------------------------------------
+        public Agent()
+        {
+            id = "[-]";
+            maxCards = 0;
+        }
+        public Agent(string arg1, int arg2)
+        {
+            id = arg1;
+            maxCards = arg2;
+        }
+        public Agent(Deck theDeck, string arg1, int arg2)
+        {
+            id = arg1;
+            maxCards = arg2;
+
+            if (theDeck != null)
+                assignDeck(theDeck);
+            else myDeck = null;
+        }
+
+        //-----------------------------------------------------------|-----------------------------------------------------------
+        public void assignDeck(Deck theDeck)
+        {
+            if (theDeck != null)
+                myDeck = theDeck;
+        }
+        //-----------------------------------------------------------|-----------------------------------------------------------
+
+        public bool addCard(Card theCard, int nDex = -1)
+        {
+            if (theCard == null)
+                return false;
+            else if (nDex >= 0 && nDex < hand.Count())
+            {
+                hand[nDex] = theCard;
+                // hand.Insert(nDex, theCard); // its inserting, not overwriting // could really be solved with a circular buffer
+                return true;
+            }
+            else if (hand.Count < maxCards)
+            {
+                hand.Add(theCard);
+                return true;
+            }
+            else return false;
+        }
+        public bool removeCard(int nDex = -1)
+        {
+            if (nDex >= 0 && nDex < hand.Count())
+            {
+                hand.RemoveAt(nDex);
+                return true;
+            }
+            else return false;
+        }
+        //-----------------------------------------------------------|-----------------------------------------------------------
+        public Card playCard(int nDex = -1)
+        {
+            if (nDex >= 0 && nDex < hand.Count())
+            {
+                Card theCard = hand[nDex];
+                hand.RemoveAt(nDex);
+
+                if (theCard.Hidden != true)
+                    theCard.Flip();
+                return theCard;
+            }
+            else return null;
+        }
+        public Card getCard(int nDex = -1)
+        {
+            if (nDex >= 0 && nDex < hand.Count())
+            {
+                Card theCard = hand[nDex];
+                return theCard;
+            }
+            else return null;
+        }
+        //-----------------------------------------------------------|-----------------------------------------------------------
+        public void FlipCards()
+        {
+            foreach (Card card in hand)
+                card.Flip();
+        }
+        public void ShowCards_verbose()
+        {
+            int counter = 0;
+            if (hand.Count != 0)
+                foreach (Card card in hand)
+                {
+                    Console.Write("Agent (" + (ID) + ") card [" + (counter++) + "] is " + card.Rank + " of " + card.Suit + '\n');
+                }
+
+            else Console.Write("Agent (" + (ID) + ") has no cards" + '\n');
+        }
+        public void ShowCards_concise()
+        {
+            int counter = 0;
+            int chunksize = 3;
+            if (hand.Count != 0)
+                foreach (Card card in hand)
+                {
+                    Console.Write("[" + (counter++) + ": " + card.Rank + "_" + card.Suit + ']');
+                    if (counter % chunksize == 0)
+                        Console.Write('\n');
+                }
+
+            else Console.Write("[EMPTY]" + '\n');
+        }
+        //-----------------------------------------------------------|-----------------------------------------------------------
+
+        public int[] hand_to_array() // Orignally from HOUSE but makes more sense here
+        {
+            if (HandSize == 0)
+                return null;
+
+            List<Card> checkset = GetHand;
+            List<int> checklist = new();
+            foreach (var card in checkset)
+                checklist.Add((int)card.Rank);
+            int[] TableArray = checklist.ToArray();
+
+            return TableArray;
+        }
+
+        public void sortHand_01() // Min-Max
+        {
+            List<Card> arg = hand;
+
+            int n = arg.Count;
+
+            for (int i = 0; i < n - 1; i++)
+            {
+                int minIndex = i;
+                for (int j = i + 1; j < n; j++)
+                    if (arg[j].Rank < arg[minIndex].Rank)
+                        minIndex = j;
+
+                Card temp = arg[minIndex];
+                arg[minIndex] = arg[i];
+                arg[i] = temp;
+            }
+            hand = arg;
+        }
+
+        public void sortHand_02() // Max-Min
+        {
+            List<Card> arg = hand;
+
+            int n = arg.Count;
+
+            for (int i = 0; i < n - 1; i++)
+            {
+                int maxIndex = i;
+                for (int j = i + 1; j < n; j++)
+                    if (arg[j].Rank > arg[maxIndex].Rank)
+                        maxIndex = j;
+
+                Card temp = arg[maxIndex];
+                arg[maxIndex] = arg[i];
+                arg[i] = temp;
+            }
+            hand = arg;
+        }
+
+        //-----------------------------------------------------------|-----------------------------------------------------------
+
+    };
+} //AGENT
+
+//---
+
+//CARD
+namespace ROUGH_ELEVENS
+{
+    public class Card
+    {
+        Rank rank; // Rank rank;
+        Suit suit; // Suit suit;
+        bool hidden; // hide - faceUp - face
+
+        public Suit Suit { get { return suit; } }
+        public Rank Rank { get { return rank; } }
+        public bool Hidden { get { return hidden; } }
+
+        public Card(Suit suit, Rank rank)
+        {
+            this.suit = suit;
+            this.rank = rank;
+            this.hidden = true;
+        }
+
+        public void Flip()
+        { hidden ^= hidden; } // ^ is the exclusive or operator 
+
+        public (int, int) enumValues()
+        {
+            return ((int)suit, (int)rank);
+        }
+
+    }
+} // CARD
+
+//---
+
+//ENUMS
+namespace ROUGH_ELEVENS
+{
+    public enum Suit
+    {
+        NULL,
+        SWORDS,
+        WANDS,
+        COINS,
+        HEARTS
+    }
+    public enum abSuit // AbvrSuit
+    {
+        NULL,
+        SW,
+        WA,
+        CO,
+        HRT,
+    }
+
+    public enum Rank
+    {
+        // gotta be more efficient way // issue of null
+        NULL,
+        ACE,
+        TWO,
+        THREE,
+        FOUR,
+        FIVE,
+        SIX,
+        SEVEN,
+        EIGHT,
+        NINE,
+        TEN,
+        JACK,
+        QUEEN,
+        KING
+
+        //etc
+
+    }
+    public enum abRank // AbvrRank
+    {
+        // gotta be more efficient way // issue of null
+        NULL,
+        _A,
+        _1,
+        _2,
+        _3,
+        _4,
+        _5,
+        _6,
+        _7,
+        _8,
+        _9,
+        _10,
+        _J,
+        _Q,
+        _K,
+
+        //etc
+
+    }
+
+} // ENUMS
+
+
+//---
+
+/*
+using System; // TESTING_FRAMEWORK
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Principal;
+using System.Text;
+using System.Threading.Tasks;
+using ROUGH_ELEVENS;
+namespace ROUGH_ELEVENS_TESTS
+{
+    [TestClass]
+    public class UnitTest1
+    {
+        //-----------------------------------------------------------|-----------------------------------------------------------
+
+        [TestMethod]         // "Ol_Reliable"
+        // this is a trasnposition of the basic run test I used
+        // during development; the difference is that was from the
+        // the CORE main file, and produces output to the console,
+        // which I used for debugging; the test serves as a goal
+        // by which I could know whether the auto solver worked.
+
+        // The reason for such a high iteration count is, to put
+        // it one way, because that's what automated testing is
+        // good for. Some of the errors and bugs I caught were
+        // only clear because they persisted over such a large
+        // iteration count.
+
+        // The simplest was just that no wins after 10k games
+        // meant my solver didn't work, but a better example was
+        // to see that the remaining cards were consistently 
+        // the higher value cards. This turned out to be due to
+        // the List<T> collection behavior; when elements are
+        // removed from the collection, it changes size, which
+        // changed the indexes, which could & would remove the
+        // wrong cards. The bug depended on the order of card
+        // submission - if the higher index card was removed
+        // first, the system would work as intended.
+
+        // As a result, this bug would be difficult, not to
+        // meantion laborious, to first spot, then recreate,
+        // if manually testing -- and that's assuming it's
+        // discovered at all. Another bug the auto solver
+        // uncovered was that I hadn't considered what would
+        // happen if the player attempted to submit the same
+        // card index; I found this bug when manually playing
+        // through and finding that the game didn't end even
+        // though there didn't appear to be any valid moves.
+
+        // However, the game otherwise often seem to work
+        // as intended and correctly determined the end state
+        // for many other games. I used the manual auto option
+        // to step through the moves of a game, and when I 
+        // confirmed the bug replication, I went back, and
+        // did the same thing but used the IDE breakpoints
+        // to step through on an ever finer detail scale &
+        // see what the submitted indexes were for the move.
+        // At this point I discovered & addressed the edge
+        // case, after which the auto solver and end game
+        // state detector (these use the same algorithm)
+        // worked as desired.
+
+        public void TM_000()
+        {
+            HOUSE theHouse = new();
+            theHouse.DaRules.Elevens();
+            bool exitCon = false;
+            for (int i = 0; exitCon != true && i < 10000; i++)
+            {
+                theHouse.PlayLoop(theHouse.DaRules);
+                if (theHouse.Audit.Last.action == "[V]")
+                    exitCon = true;
+            }
+            Assert.IsTrue(theHouse.Audit.Last.action == "[V]"); //deliberately not casting as string for comparison
+        } // END_TEST
+
+        //-----------------------------------------------------------|-----------------------------------------------------------
+
+        [TestMethod]         // "TenThousandVictories"
+        // based on the Ol_Reliable test, the conidtion is flipped; the
+        // loop will exit if any of the games are lost. In normal Elevens
+        // this wouldn't work, but the "table size" has been increased
+        // to the entire deck (52 cards, hence "Elevens_52()" for rules)
+        // which means, if auto solver works, 10k victory are assured.
+
+        // This was likkely my most important test, and reflects the
+        // benefits and power of TTD. While I didn't run the test using
+        // the framework provided here (I did all of the testing with
+        // the source files, which also means a lot (or all) of the test
+        // process state code was lost when I refactored; ie, this is
+        // a concise recreation of the test & its objectives, but is
+        // that concise because it relies on features, like the logger
+        // and RULESET struct method, which were not yet developed
+
+        public void TM_001()
+        {
+            HOUSE theHouse = new();
+            theHouse.DaRules.Elevens_52();
+            bool exitCon = false;
+            for (int i = 0; exitCon != true && i < 10000; i++)
+            {
+                theHouse.PlayLoop(theHouse.DaRules);
+                if (theHouse.Audit.Last.action == "[F]")
+                    exitCon = true;
+            }
+            Assert.IsTrue(theHouse.Audit.Last.action == "[V]");
+            Assert.IsTrue(theHouse.Audit.LogCount == 10000);
+        } // END_TEST
+
+        //-----------------------------------------------------------|-----------------------------------------------------------
+
+        [TestMethod]          // "TenThousandDefeats"
+        // Converse of "TenThousandVictories" (if the name didn't give it away
+        // This test validates the system by changing the hand size to 2, which
+        // means there's no way to win. Putting asside the unlikely event that
+        // all cards happened to be stacked in pairs, there's no way to submit
+        // the face card triad. Again, the large iteration count is partially
+        // to show off a kind of test enable by the (non explicitly, or even
+        // implicitly) required autosolver. This isn't particularly representive
+        // of any particular test I ran during development; the ValidMoveExists
+        // function was one of the first to come online, and was pretty easy to
+        // get the baseline minimum -- if it didn't find and end to the game,
+        // the game would stall, after all. I've included it both to pad the 
+        // test count so that these giant blocks of green text are broken up
+        // by something, and are anchored in a genuine TTD process; while I may
+        // not have exactly used this test, its one I could have used, and is
+        // moreso useful moving forwards for insuring no breaking changes occur
+        // since, if this test fails, one knows theres a leak somewhere.
+
+        // Maintaining code is just as important as writing code (for the most part),
+        // and is usually where most developers struggle; or, at least, its a problem
+        // that must always be addressed. I've sought to keep the code as clean as
+        // possible, but some of what I've learned with this process has been about
+        // documentation & maintainability / sustainability. The write up cover this
+        // a bit more in depth so I won't say too much more about that here.
+
+        // As a final note, I want to recognize that the three tests here rely on
+        // a lot of code which I tested to validate (the individual indexer functions,
+        // the logger system) and therefore implicitly test that these things still
+        // work, but ideally all of the component tests (which were all things I did,
+        // but mutably in the source code) would have been documented, if only to
+        // record what the test goals & conditions were themselves.
+
+
+        public void TM_002()
+        {
+            HOUSE theHouse = new();
+            theHouse.DaRules.Elevens_02();
+            bool exitCon = false;
+            for (int i = 0; exitCon != true && i < 10000; i++)
+            {
+                theHouse.PlayLoop(theHouse.DaRules);
+                if (theHouse.Audit.Last.action == "[V]")
+                    exitCon = true;
+            }
+            Assert.IsTrue(theHouse.Audit.Last.action == "[F]");
+            Assert.IsTrue(theHouse.Audit.LogCount == 10000);
+        } // END_TEST
+
+        //-----------------------------------------------------------|-----------------------------------------------------------
+    }
+}  // TESTING_FRAMEWORK
+
+
+*/
+//---

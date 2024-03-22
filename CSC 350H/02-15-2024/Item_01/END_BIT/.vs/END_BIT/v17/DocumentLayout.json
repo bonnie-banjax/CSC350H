@@ -1,0 +1,155 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-08-2024\\END_BIT\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|END_BIT.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\02-08-2024\\end_bit\\aprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|END_BIT.csproj|solutionrelative:aprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|END_BIT.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\02-08-2024\\end_bit\\deck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|END_BIT.csproj|solutionrelative:deck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|END_BIT.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\02-08-2024\\end_bit\\agent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|END_BIT.csproj|solutionrelative:agent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|END_BIT.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\02-08-2024\\end_bit\\rank.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|END_BIT.csproj|solutionrelative:rank.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|END_BIT.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\02-08-2024\\end_bit\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|END_BIT.csproj|solutionrelative:account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|END_BIT.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\02-08-2024\\end_bit\\prototyper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|END_BIT.csproj|solutionrelative:prototyper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|END_BIT.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\02-08-2024\\end_bit\\card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|END_BIT.csproj|solutionrelative:card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|END_BIT.csproj|c:\\users\\andrew\\documents\\cuny\\spring 2024\\csc 350h\\02-08-2024\\end_bit\\suit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D15F5343-2BA0-4780-B235-A4CE3463D261}|END_BIT.csproj|solutionrelative:suit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Account.cs",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-08-2024\\END_BIT\\Account.cs",
+              "RelativeDocumentMoniker": "Account.cs",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-08-2024\\END_BIT\\Account.cs",
+              "RelativeToolTip": "Account.cs",
+              "ViewState": "AQIAACYAAAAAAAAAAAAMwDkAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-15T04:11:40.987Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Prototyper.cs",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-08-2024\\END_BIT\\Prototyper.cs",
+              "RelativeDocumentMoniker": "Prototyper.cs",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-08-2024\\END_BIT\\Prototyper.cs",
+              "RelativeToolTip": "Prototyper.cs",
+              "ViewState": "AQIAAHoAAAAAAAAAAIAwwJoAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-14T14:46:50.394Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Agent.cs",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-08-2024\\END_BIT\\Agent.cs",
+              "RelativeDocumentMoniker": "Agent.cs",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-08-2024\\END_BIT\\Agent.cs",
+              "RelativeToolTip": "Agent.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAAwJAAAABkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-14T14:32:37.027Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Deck.cs",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-08-2024\\END_BIT\\Deck.cs",
+              "RelativeDocumentMoniker": "Deck.cs",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-08-2024\\END_BIT\\Deck.cs",
+              "RelativeToolTip": "Deck.cs",
+              "ViewState": "AQIAAN0AAAAAAAAAAAAAACIBAABGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-08T20:07:00.162Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Card.cs",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-08-2024\\END_BIT\\Card.cs",
+              "RelativeDocumentMoniker": "Card.cs",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-08-2024\\END_BIT\\Card.cs",
+              "RelativeToolTip": "Card.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAkwBwAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-08T20:06:01.047Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Rank.cs",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-08-2024\\END_BIT\\Rank.cs",
+              "RelativeDocumentMoniker": "Rank.cs",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-08-2024\\END_BIT\\Rank.cs",
+              "RelativeToolTip": "Rank.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAoAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-08T20:04:05.537Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Suit.cs",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-08-2024\\END_BIT\\Suit.cs",
+              "RelativeDocumentMoniker": "Suit.cs",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-08-2024\\END_BIT\\Suit.cs",
+              "RelativeToolTip": "Suit.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-08T19:56:51.54Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AProgram.cs",
+              "DocumentMoniker": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-08-2024\\END_BIT\\AProgram.cs",
+              "RelativeDocumentMoniker": "AProgram.cs",
+              "ToolTip": "C:\\Users\\Andrew\\Documents\\CUNY\\Spring 2024\\CSC 350H\\02-08-2024\\END_BIT\\AProgram.cs",
+              "RelativeToolTip": "AProgram.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAcwBQAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-08T19:55:18.056Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+ANDREW MOBUS
+CSC 350H
+
+INPUT INTERFACE
+
+
+note: Screen space
+-> store the world coordinates of the four screen corners
+-> note: center of screen is (0.5, 0.5) because default schema for
+this kind of thing uses the upper left corner as (0,0) and the bottom
+right for (1, 1)
+
+
+Store half the with and half the height of the ball's 2d collider
+
+BoxCollider2D collider = GetComponent<BoxCollider2D>();
+Vector3 screenDim = collider.bounds.max - collider.bounds.min;

@@ -1,0 +1,40 @@
+
+
+1.) Implement selection sort method & test the method
+2.) implement the Card & Deck classes (shuffle, cut, draw) (tests) (print)
+3.) Implement a class called BankAccount.
+
+--> Also the Logs from previous bit!
+-> zip all files together
+
+--> tuesday we discuss how to shuffle
+
+--> Need to improve test development for lab programs
+-> come up with automatic tests
+-> think of more test cases for any class & program
+-> include as many meaningful test cases
+
+-> empty list
+-> single element list
+-> sorted list
+-> reverse sorted list
+-> a list with repeated elements
+
+--> Cut deck of cards at given location
+-> remove all cards before the given index & add to back
+
+Test code if each card is moved to a different location
+
+
+1: create Dictionary of all cards with integer key values from 0 to total cards
+2: create a simple array of integers 
+
+
+note: ignore valid card location (?) requirement
+
+deal card
+
+remove card
+
+
+

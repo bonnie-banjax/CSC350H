@@ -1,0 +1,38 @@
+ANDREW MOBUS
+02-20-2024
+Elevens Game Demo
+System Description & Requirements
+
+-->  General System Description Requirements:
+-> the total game set is 52 cards; four sets of values [1-10 + J, Q, K]
+-> the table set is exactly 9 cards, except while processing a move
+-> the table set cards are the only visable cards; the deck values are hidden
+-> valid pairings are two cards that add to exactly 11, and one exception
+-> the exception case is a unordered triad made of exactly one jack, one queen, one king
+-> the suit of cards in not relevant for the game and can be entirely ignored
+-> the game is over when there are no more legal pairs (or the triad case) on the table set
+-> if the deck and table set are empty when the game ends, it is a win, otherwise, it is a loss
+-> there is no draw condition; a game is either a win, or a loss
+-> when a valid pair or the valid triad are picked, they are removed from the table set
+-> selecting a valid pair or triad is the only way cards can be removed from the table set
+-> whenever cards are removed from the table set, and equal number are drawn from the deck
+and added to the table set
+-> the discard pile isn't used in any capacity
+-> there is no way moves can be undone
+-> the system is deterministic and based entirely on the card order after shuffling
+-> there is no means of interacting with the deck other than drawing cards to replace cards
+removed via picking a valid pair or triad
+
+--> System Requirements
+-> detect valid pairings when presented as input
+-> ignore invalid input & notify user that the input was invalid
+-> process move submissions as valid or invalid
+-> process valid moves by removing the input set from the table set
+-> replace removed elements from table set with elements from deck set
+-> process table state to determine if any legal moves exists
+-> on detection that no legal moves exists, determine whether the state is a win or loss
+-> notify the user when the game is won or lost
+-> a shuffle / restart action the user can select at any time to make a new game
+-> the only user input during a game is the section of cards from the table set
+-> display the values of the table set
+-> display the remaining number of cards in the deck

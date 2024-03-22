@@ -1,0 +1,238 @@
+
+CSC 350H
+02-01-2024
+Homework Assignment 01
+
+public class LogMessage
+{
+	private String MachineID;
+	private String description;
+	
+	public LogMessage(String Message);
+	{}
+	
+	public boolean constainsWord(String keyword)
+	{}
+	
+	public String getMachineId()
+	{}
+	
+	pulic String getDescription()
+	{}
+}
+
+
+----------|----------|----------|----------|----------|----------|----------|----------
+
+Class Notes:
+
+Deck deck;
+deck.print();
+
+-----
+
+-> above doesn't work because haven't explicitly instantiated an object,
+just created a reference, and is in fact (illegal?); so needs new keyword,
+and explicit call to constructor
+-> what about if (pointer / reference isn't null (?))
+
+Deck deck = new Deck();
+deck.print();
+
+----
+
+-> if do Deck deck2 = deck; then it refers to the same object
+would need copy constructor to create identical instance
+
+----
+
+Properties in C#
+
+bool isEmpty = deck.Empty;
+Function/method or property?
+
+----
+
+(link in slides or on BB?)
+OPtion Propety in C++
+
+struct FooP
+class Properties
+int value;
+public:
+int & operator - (const int &i) {return value = i}
+
+(INCOMPLETE)
+
+
+----------|----------|----------|----------|----------|----------|----------|----------
+
+
+--> NOTE: This requires the ConsoleCard.dll file to function
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using ConsoleCards;
+
+namespace CSC350H_Spring2024_02_01_2024
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            // func_0();
+            decker();
+        }
+
+        static void decker()
+        {
+            Deck deck = new Deck();
+            //deck.Shuffle();
+            Card card = null;
+
+            // or (!deck.Empty)
+            while (deck.Empty != true) {
+                Draw(deck, card);
+                // deck.Shuffle();
+            }
+            //for (int i = 0; i < 52; i++)
+            //  Draw(deck, card);
+        }
+
+        static void Draw(Deck deck, Card card)
+        {
+
+            card = deck.TakeTopCard();
+            card.FlipOver();
+            Console.WriteLine(card.Rank + " " + card.Suit);
+        }
+
+        static void func_0()
+        { 
+        // foreach type variableName in arrayName)
+        
+         string[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+        foreach (string car in cars) {
+        Console.WriteLine(car);
+        }
+         
+        }
+    }
+}
+
+
+/*
+Write code to 
+create a new deck and tell the deck to print itself
+tell the deck to shuffle and print itself
+take the top card from the deck and print the card rank and suit (check Card class for rank and suit)
+    take the top card from the deck and print the card rank and suit 
+Cut the deck of cards at a random position
+print all cards in the deck
+*/
+
+
+----------|----------|----------|----------|----------|----------|----------|----------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using ConsoleCards;
+
+namespace CSC350H_Spring2024_02_01_2024
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            NeoDecker();
+            //decker();
+        }
+
+        static void decker()
+        {
+            Deck deck = new Deck();
+            Card card = null;
+
+            while (deck.Empty != true)
+                Draw(deck, card);
+
+            Deck deck_2 = new Deck();
+
+            deck_2.Shuffle();
+
+            while (deck_2.Empty != true)
+                Draw(deck_2, card);
+
+
+        }
+
+        static void Draw(Deck deck, Card card)
+        {
+
+            card = deck.TakeTopCard();
+            card.FlipOver();
+            Console.WriteLine(card.Rank + " " + card.Suit);
+        }
+
+        static void NeoDecker()
+        {
+            Deck deck = new Deck();
+            
+            
+            Card card1 = deck.TakeTopCard();
+
+            Card card2 = deck.TakeTopCard();
+
+            Card card3 = deck.TakeTopCard();
+
+            Card card4 = deck.TakeTopCard();
+
+            Card card5 = deck.TakeTopCard();
+
+
+            List<Card> NeoDeck = new List<Card> { card1, card2, card3, card4, card5 };
+            int counter = 0;
+            // or (!deck.Empty)
+            
+
+            while (deck.Empty != true)
+            {
+                counter++;
+                NeoDeck.Append(deck.TakeTopCard());
+            }
+            
+            Console.WriteLine(counter); //Console.WriteLine(NeoDeck[0].Rank + " " + NeoDeck[0].Suit);
+
+            foreach (Card l_card in NeoDeck)
+            {
+                l_card.FlipOver();
+                Console.WriteLine(l_card.Rank + " " + l_card.Suit);
+            }
+            
+            //for (int i = 0; i < 52; i++)
+            //  NeoDeck.Append(;
+        }
+
+    }
+
+}
+
+
+/*
+Write code to 
+create a new deck and tell the deck to print itself
+tell the deck to shuffle and print itself
+take the top card from the deck and print the card rank and suit (check Card class for rank and suit)
+    take the top card from the deck and print the card rank and suit 
+Cut the deck of cards at a random position
+print all cards in the deck
+*/

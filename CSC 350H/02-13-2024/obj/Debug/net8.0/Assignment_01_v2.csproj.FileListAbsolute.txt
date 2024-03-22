@@ -1,0 +1,17 @@
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\Assignment_01_v2\bin\Debug\net8.0\Assignment_01_v2.exe
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\Assignment_01_v2\bin\Debug\net8.0\Assignment_01_v2.deps.json
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\Assignment_01_v2\bin\Debug\net8.0\Assignment_01_v2.runtimeconfig.json
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\Assignment_01_v2\bin\Debug\net8.0\Assignment_01_v2.dll
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\Assignment_01_v2\bin\Debug\net8.0\Assignment_01_v2.pdb
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\Assignment_01_v2\bin\Debug\net8.0\ConsoleCards.dll
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\Assignment_01_v2\obj\Debug\net8.0\Assignment_01_v2.csproj.AssemblyReference.cache
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\Assignment_01_v2\obj\Debug\net8.0\Assignment_01_v2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\Assignment_01_v2\obj\Debug\net8.0\Assignment_01_v2.AssemblyInfoInputs.cache
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\Assignment_01_v2\obj\Debug\net8.0\Assignment_01_v2.AssemblyInfo.cs
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\Assignment_01_v2\obj\Debug\net8.0\Assignment_01_v2.csproj.CoreCompileInputs.cache
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\Assignment_01_v2\obj\Debug\net8.0\Assignment_01_v2.csproj.CopyComplete
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\Assignment_01_v2\obj\Debug\net8.0\Assignment_01_v2.dll
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\Assignment_01_v2\obj\Debug\net8.0\refint\Assignment_01_v2.dll
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\Assignment_01_v2\obj\Debug\net8.0\Assignment_01_v2.pdb
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\Assignment_01_v2\obj\Debug\net8.0\Assignment_01_v2.genruntimeconfig.cache
+C:\Users\Andrew\Documents\CUNY\Spring 2024\CSC 350H\Assignment_01_v2\obj\Debug\net8.0\ref\Assignment_01_v2.dll

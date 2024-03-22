@@ -1,0 +1,128 @@
+CSC 350H 02-08-2024
+Array, Lists, Other Structures (?)
+
+
+--> C# & Java very similar, learn C# basically learn Java
+--> Reminder: forgot about the log message part of homework (1)
+-> its about searching for strings in a string (there's a little 
+table list in one of the slides
+
+--> Arrays:
+-> int[] numbersArray = new int[6];
+-> var numbersArray = new int[6]; // var replaces int[] or any data type (?)
+
+--> Array Initialization
+-> when create an array, can optionally initialize it with group of values
+
+const int SIZE = 5;
+int[] numbersArray = new int[SIZE] {10 etc}
+
+int[] numbersArray = new int[] {10 etc}
+
+int[] numbersArray = {10 etc}
+
+
+The length Property
+-> all arrays have a length property that is set to the number of elements in the array
+-> the Length property can be useful when processing the entire array
+
+Passing Array as Argument to Methods
+-> an entire array can be passed as one arguement to a method
+
+string[ people {"Bill", etc}
+ShowArray(people);
+
+private void ShowArray(string[] strArray)
+{
+	foreach (string str in strArray)
+	{
+	//code
+	}
+}
+
+// foreach doesn't work if you try to modify the structure its walking
+
+Some Useful Array Algorithms
+-> the sequential search search a loop to sequantial step thourgh an array
+starting with the first element. For example;
+-> Copty an array - create a second array and copy the individual
+element of the source array to the target array
+-> comparing Arrays, you must compare each element of the arrays
+-> check to make sure that the lengths are the same first!
+--> Alternative (?)
+-> Array.Copy(arr1, 0, arr2, 0, 6)
+-> arr1 & arr2 ar the arrays (?)
+
+
+Advanced Algoriths for Sorting and Searching
+-> The selection sort works by:
+-> locating the smallest value and moving it to the element 0
+-> then find the second smallest and move it to element 1
+continue the process unitl all the elements have been placed
+in their proper order
+
+This algorith requires swapping of array elements which can be done by the following:
+
+private bvoid Swap(ref int a, ref int b)
+{
+	int temp = a;
+	a = b;
+	b = temp;
+}
+
+-> Selection Sort Algorithm:
+
+int MinIndex, MinValue;
+for(int startScan = 0; startScan < iArray.Length - 1; startScan++)
+{
+	minIndex = startScan;
+	minValue = iArray;
+	for (int index = startScan + 1; index < iArray.Length; index++)
+	{
+		if (iArray[index] < min Value)
+		{
+			minValue = iArray[index];
+			minIndex = index;
+		}
+	}
+	Swap (ref iArray[minIndex], ref iArray[startScan]);
+}
+
+Binary Search Algorithm:
+-> only works when data is sorted
+
+Accessing elements in a 2D array
+-> arArray [0, 2]
+-> int[,] scores {initialiation list}
+
+--> Using Nest Loops to Proecess 2D Arrays:
+
+const int ROWS = 3;
+const int COLS - 4;
+(truncated)
+
+Getting the Lnegth of a Two-Dimentional Array
+-> The length property of a two dimentional array returns the total number
+of elements in the array
+-> can get number of rows & columns in an array with the GetLength mothod
+-> pass 0 as an argument to get the number of rows, or 1 to get the nmber of columns
+
+7.8 Jagged Arrays
+-> special type of 2D array
+-> rows in a jagged array can have different lengths
+
+Jagged arrays have aLnegth property; holds number of rows
+Each row also has a Length property; holds number of columns
+(truncated)
+
+List Collection
+--> (WASN'T PAYING ATTENTION)
+
+
+-----------------------------------
+
+Deck Class
+
+List of Cards
+List operations {cut deck, shuffle deck, take}
+Implement the Deck class
